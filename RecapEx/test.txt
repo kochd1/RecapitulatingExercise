@@ -3,3 +3,5 @@ Mau luegä, öbs das o richtig commited...$
 dsdsdsdsdsd
 
 nomau tescht
+
+kochd1: commit test nach Verschiebung Git workspace
