@@ -4,6 +4,7 @@
 <link href="style.css" type="text/css" rel="stylesheet">
 <div class="navbar">
   <a href="logout.php">Logout</a>
+  <a> Username</a>
   <p>Home</p>
 </div>
 </head>
@@ -62,6 +63,10 @@ catch(PDOException $e)
     echo $e->getMessage();
 }
 
+<<<<<<< HEAD
+=======
+echo "<br><font color = '#ff0000'>User =".$_SESSION['user'];
+>>>>>>> 4329f3ccdbd29f82c5d6ee66f60089aa4555d035
 ?>
   
 </table>
