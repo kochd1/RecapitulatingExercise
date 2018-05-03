@@ -17,17 +17,43 @@
     text-decoration: none;
 }
 
+.navbar p {
+    float: left;
+    display: block;
+    color: #f2f2f2; 
+    text-align: center;
+    padding: 0px 10px;
+    text-decoration: none; 
+}
+
 body { 
     background: lightBlue 
 }
 table, th, td { 
     border: 1px solid black; border-collapse: collapse; 
-    text-align: center;
+    margin: auto; 
+    text-align: left;
+    height: 40px;
+    vertical-align: bottom;
+}
+
+th {
+    background: gainsboro; 
+    font: bold; 
+    font-size: 30px; 
+}
+
+td {
+    font-size: 20px; 
 }
 
 h1 {
     color: Black; 
     text-align: center;
+}
+tr:nth-child(odd) {
+    background-color: lightGray;
+    width: 100%; 
 }
 
 

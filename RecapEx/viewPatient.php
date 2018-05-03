@@ -1,3 +1,22 @@
+<html>
+<head>
+<link href="style.css" type="text/css" rel="stylesheet">
+<div class="navbar">
+  <a href="logout.php">Logout</a>
+  <p>Patient vital signs</p>
+</div>
+</head>
+
+<body>
+<div> .. </div>
+
+<table>
+<tr>
+    <th>sign_name</th>
+    <th>value</th>
+    <th>time</th>
+    <th>note</th>
+</tr>
 <?php
 session_start();
 
@@ -8,20 +27,20 @@ if(!isset($_SESSION['user'])){
   exit();
 }
 
-
 include('pdo.inc.php');
 
 try {
     $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+    
     $patientID=0;
     if(isset($_GET['id'])){
       $patientID = (int)($_GET['id']);
     }
-    if($patientID >0){
 
-      $sql0 = "SELECT name, first_name
-  FROM patient
-  WHERE patient.patientID = :patientID";
+    if($patientID >0) {
+      $sql0 = "SELECT name, first_name 
+               FROM patient
+               WHERE patient.patientID = :patientID";
 
     $statement0 = $dbh->prepare($sql0);
     $statement0->bindParam(':patientID', $patientID, PDO::PARAM_INT);
@@ -33,24 +52,30 @@ try {
       echo "<br>\n";
     }
 
-
       /*** echo a message saying we have connected ***/
-      $sql = "SELECT name, first_name, value, time, sign_name
-  FROM patient, vital_sign, sign
-  WHERE patient.patientID = vital_sign.patientID
-    AND vital_sign.signID = sign.signID 
-    AND patient.patientID = :patientID";
+      $sql = "SELECT sign_name, value, time, note
+              FROM patient, vital_sign, sign
+              WHERE patient.patientID = vital_sign.patientID
+              AND vital_sign.signID = sign.signID 
+              AND patient.patientID = :patientID";
 
     $statement = $dbh->prepare($sql);
     $statement->bindParam(':patientID', $patientID, PDO::PARAM_INT);
     $result = $statement->execute();
 
-    while($line = $statement->fetch()){
-      echo $line['sign_name']." = ".$line['value']. " at ".$line['time'];
+    // while($line = $statement->fetch()){
+    //   echo $line['sign_name']." = ".$line['value']. " at ".$line['time'];
 
-      echo "<br>\n";
-    }
-
+    //   echo "<br>\n";
+    // }
+    foreach ($statement as $row) {
+      echo "<tr>
+       <td> $row[sign_name].</td>
+       <td> $row[value].</td>
+       <td> $row[time].</td>
+       <td> $row[note].</td>
+     </tr>";
+     }
     }
     else{
       echo "<h1>The patient does not exist</h1>";
@@ -60,14 +85,12 @@ try {
 }
 catch(PDOException $e)
 {
-
     /*** echo the sql statement and error message ***/
     echo $e->getMessage();
 }
 
-
 ?>
-<h2> Exercise 1</h2>
+<!-- <h2> Exercise 1</h2>
 Buttons for displaying just an alert.<br>
 <button onclick="alert('Temperature');">Temperature</button>
   <button onclick="alert('Pulse');">Pulse</button><button onclick="alert('Activity');">Activity</button>
@@ -159,7 +182,8 @@ catch(PDOException $e)
     echo $e->getMessage();
 }
 
-  ?>
-  
-<br />
-<i><a href="logout.php">Logout</a></i>
+  ?> -->
+
+</table>
+</body>
+</html>

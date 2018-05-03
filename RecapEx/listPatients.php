@@ -4,9 +4,10 @@
 <link href="style.css" type="text/css" rel="stylesheet">
 <div class="navbar">
   <a href="logout.php">Logout</a>
+  <p>Home</p>
 </div>
-
 </head>
+
 <body>
   <div> .. </div>
 <h1>List of patients</h1>
@@ -40,18 +41,11 @@ try {
 
     $result = $dbh->query($sql);
 
-    // while($line = $result->fetch()){
-    //   echo "<a href='viewPatient.php?id=".$line['patientID']."'>";
-    //   echo $line['first_name']." ".$line['name'];
-
-    //   echo "</a><br>\n";
-
       foreach ($dbh -> query($sql) as $row) {
         echo "<tr>
           <td> $row[patientID].</td>
           <td> $row[MRN].</td>
-          <td>
-          <a href=viewPatient.php?id=$row[patientID]>$row[name]</a>.</td>
+          <td><a href=viewPatient.php?id=$row[patientID]>$row[name]</a>.</td>
           <td> $row[first_name].</td>
           <td> $row[gender].</td>
           <td> $row[birthdate].</td>
@@ -68,4 +62,8 @@ catch(PDOException $e)
 
 echo "<br>User =".$_SESSION['user'];
 ?>
+  
+</table>
+</body>
+</html>
 
