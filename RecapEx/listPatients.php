@@ -33,6 +33,8 @@ if(!isset($_SESSION['user'])){
 
 include('pdo.inc.php');
 
+echo "<br>User =".$_SESSION['user'];
+
 try {
     $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     /*** echo a message saying we have connected ***/
@@ -60,7 +62,6 @@ catch(PDOException $e)
     echo $e->getMessage();
 }
 
-echo "<br>User =".$_SESSION['user'];
 ?>
   
 </table>

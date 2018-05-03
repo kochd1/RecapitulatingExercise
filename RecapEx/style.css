@@ -35,6 +35,7 @@ table, th, td {
     text-align: left;
     height: 40px;
     vertical-align: bottom;
+    width: auto; 
 }
 
 th {
@@ -55,5 +56,7 @@ tr:nth-child(odd) {
     background-color: lightGray;
     width: 100%; 
 }
+
+
 
 
