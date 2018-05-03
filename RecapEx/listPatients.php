@@ -1,14 +1,14 @@
+<!DOCTYPE html>
 <html>
 <head>
 <link href="style.css" type="text/css" rel="stylesheet">
-
 <div class="navbar">
-  <a href="login.php">Logout</a>
+  <a href="logout.php">Logout</a>
 </div>
+
 </head>
-
 <body>
-
+  <div> .. </div>
 <h1>List of patients</h1>
 
 <table>
@@ -51,8 +51,7 @@ try {
           <td> $row[patientID].</td>
           <td> $row[MRN].</td>
           <td>
-          <a href=viewPatient.php?id=$row[patientID]>$row[name]</a>
-           .</td>
+          <a href=viewPatient.php?id=$row[patientID]>$row[name]</a>.</td>
           <td> $row[first_name].</td>
           <td> $row[gender].</td>
           <td> $row[birthdate].</td>
@@ -69,5 +68,4 @@ catch(PDOException $e)
 
 echo "<br>User =".$_SESSION['user'];
 ?>
-<br />
-<i><a href="logout.php">Logout</a></i>
+
