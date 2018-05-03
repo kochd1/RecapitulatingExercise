@@ -54,6 +54,7 @@ if(!$logged){
 	header("Location: listPatients.php");
 	exit();
       }
+      
       else{ // if login failed
 	    $message= "Login not possible. Please try again!";
       }
@@ -88,8 +89,8 @@ if(!$logged){
    </form>
 </center>
    <?php
-    echo "<b>$message</b>";
-  
+    echo "<center><b><font color = '#ff0000'>$message</font></b></center>";
+
     }
   
   ?>
