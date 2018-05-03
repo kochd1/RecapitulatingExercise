@@ -1,18 +1,14 @@
 <html>
 <head>
-<style type="text/css">
-  body { background: lightBlue }
-  table, th, td { border: 1px solid black; border-collapse: collapse }
-  h1 {color: red}
-  </style>
+<link href="style.css" type="text/css" rel="stylesheet">
 
 <div class="navbar">
   <a href="login.php">Logout</a>
 </div>
-
 </head>
 
 <body>
+
 <h1>List of patients</h1>
 
 <table>
