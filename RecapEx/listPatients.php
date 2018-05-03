@@ -63,10 +63,6 @@ catch(PDOException $e)
     echo $e->getMessage();
 }
 
-<<<<<<< HEAD
-=======
-echo "<br><font color = '#ff0000'>User =".$_SESSION['user'];
->>>>>>> 4329f3ccdbd29f82c5d6ee66f60089aa4555d035
 ?>
   
 </table>
