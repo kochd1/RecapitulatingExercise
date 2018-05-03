@@ -1,10 +1,15 @@
 <html>
 <head>
 <style type="text/css">
-  body { background: yellow }
+  body { background: lightBlue }
   table, th, td { border: 1px solid black; border-collapse: collapse }
   h1 {color: red}
   </style>
+
+<div class="navbar">
+  <a href="login.php">Logout</a>
+</div>
+
 </head>
 
 <body>
