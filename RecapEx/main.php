@@ -21,6 +21,7 @@ if(!$logged){
   if(isset($_POST['user'])){
     $user = ($_POST['user']);
   }
+  
   if(isset($_POST['pwd'])){
     $pwd = ($_POST['pwd']);
   }
@@ -31,6 +32,7 @@ if(!$logged){
     $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     // if the username is set, test if combination "username/password" is valid
     if($user !=''){
+     
       // Initialise SQL query with place holders (:username and :password)
       $sql0 = "SELECT staff.staffID, staff.username, first_name, hashed_password
   FROM staff,credential
@@ -41,8 +43,11 @@ if(!$logged){
       $statement0->bindParam(':password', $pwd, PDO::PARAM_STR);
       // execute the query
       $result0 = $statement0->execute();
+
+     
       // case if login was a success
       if($line = $statement0->fetch()){
+          
 	echo "<h1> staff : ".$line['staffID']."  ".$line['username']." ".$line['hashed_password']."</h1>\n";
 	$logged=true;
 	$_SESSION['user']= $line['username'];
@@ -50,12 +55,16 @@ if(!$logged){
 	exit();
       }
       else{ // if login failed
-	$message= "Login not possible";
+	    $message= "Login not possible. Please try again!";
       }
 
       $dbh = null;
     }
+
+    
+
   }
+
   catch(PDOException $e)
     {
 
@@ -74,7 +83,7 @@ if(!$logged){
 <pre>
     Username: <input type="text" name="user">
     Password: <input type="password" name="pwd">
-   <input type="submit" value="Login">
+   <center><input type="submit" value="Log in"></center>
 </pre>
    </form>
 </center>
