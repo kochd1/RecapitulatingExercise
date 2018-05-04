@@ -17,6 +17,22 @@
     <th>time</th>
     <th>note</th>
 </tr>
+
+<div>
+<H1><FONT="TIMES ROMAN" FONT-COLOR="BLUE" > SELECT A VITAL SIGN:</H1>
+<select id="vitsin">
+  <option value=""></option>
+  <option value="temp">Temperature</option>
+  <option value="pu">Pulse</option>
+  <option value="act">Activity</option>
+  <option value="BP">Blood Pressure</option>
+  <option value="med">Medication</option>
+</select>
+   <br>
+<input class="SubmitButton" type="submit" name="SUBMITBUTTON" value="Submit" style="font-size:20px; " />
+</div>
+
+
 <?php
 session_start();
 
@@ -130,6 +146,17 @@ Buttons for displaying just an alert.<br>
 <button onclick="displayVitalSigns('Temperature');">Temperature</button>
   <button onclick="displayVitalSigns('Pulse');">Pulse</button><button onclick="displayVitalSigns('Activity');">Activity</button>
 
+<div class="btn-group" style="width:100%">
+  <button style="width:25%" onclick="displayVitalSigns('Temperature');">Temperature</button>
+  <br>
+  <button style="width:25%" onclick="displayVitalSigns('Pulse');">Pulse</button>
+  <br>
+  <button style="width:25%" onclick="displayVitalSigns('Activity');">Activity</button>
+  <br>
+  <button style="width:25%">Blood Pressure</button>
+  <br>
+  <button style="width:25%">Medication</button>
+</div>
 
   <?php
   try {
