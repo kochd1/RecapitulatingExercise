@@ -4,8 +4,20 @@
 <link href="style.css" type="text/css" rel="stylesheet">
 <div class="navbar">
   <a href="logout.php">Logout</a>
-  <a> Username</a>
   <p>Home</p>
+  <?php
+session_start();
+
+// First, we test if user is logged. If not, goto main.php (login page).
+if(!isset($_SESSION['user'])){
+  header("Location: main.php");
+  exit();
+}
+
+include('pdo.inc.php');
+
+echo "<a> User: ".$_SESSION['user']."</a>";
+?>
 </div>
 </head>
 
@@ -24,17 +36,7 @@
 </tr>
 
 <?php
-session_start();
 
-// First, we test if user is logged. If not, goto main.php (login page).
-if(!isset($_SESSION['user'])){
-  header("Location: main.php");
-  exit();
-}
-
-include('pdo.inc.php');
-
-echo "<br>User =".$_SESSION['user'];
 
 try {
     $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
