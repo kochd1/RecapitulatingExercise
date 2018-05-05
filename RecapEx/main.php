@@ -1,6 +1,9 @@
 <link href="style.css" type="text/css" rel="stylesheet">
+<div class="container"><div class="item"></div><div>
+
 
 <?php
+
 session_start();
 // Initialisation of passwords for the database
 include('pdo.inc.php');
@@ -77,19 +80,57 @@ if(!$logged){
 // the form is only displayed if the person is not logged.
 if(!$logged){
 ?>
-<center>
+
+<style>
+
+.container
+{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     height: 50vh;
+    
+}
+/*.item
+{
+     background-color: #f3f2ef;
+     border-radius: 3px;
+     width: 200px;
+     height: 100px; 
+}*/
+
+h1{font-size: 85px; margin-bottom: 100px}
+
+fieldset{background-color: white;
+        border-color:#000000;
+        margin-top: 50px;
+        margin-left: 80px;
+        width: 300px;}
+
+</style>
+
+<div>
   <h1>ePatient Data</h1>
 
     <form method='POST'>
-<pre>
-    Username: <input type="text" name="user">
-    Password: <input type="password" name="pwd">
-   <center><input type="submit" value="Log in"></center>
-</pre>
+      <fieldset>
+<pre><span class="inner-pre" style="font-size: 20px;">
+    <label for="Username">Username:</label>
+    <input type="text" name="user" style= "width: 200px; height: 30px; font-size: 20px;">
+
+    <label for="Password">Password:</label>
+    <input type="password" name="pwd" style= "width: 200px; height:30px; font-size: 20px;">
+
+   <input type="submit" value="Log in" style = "font-size: 20px; margin-left: 10px">
+</span></pre>
+</fieldset>
    </form>
-</center>
+   
+</div>
+
+
    <?php
-    echo "<center><b><font color = '#ff0000'>$message</font></b></center>";
+    echo "<p align = 'center'><b><font color = '#ff0000'>$message</font></b> </p>";
 
     }
   
