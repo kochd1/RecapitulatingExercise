@@ -6,6 +6,8 @@ session_start();
 
 unset($_SESSION['user']);
 
+header('refresh: 3; url=main.php');
+
 
 
 ?>
