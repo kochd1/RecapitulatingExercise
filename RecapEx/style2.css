@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Page Title</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
 * {
     box-sizing: border-box;
 }
@@ -19,7 +12,7 @@ body {
 .header {
     padding: 80px;
     text-align: center;
-    background: #1abc9c;
+    background: lightGreen;
     color: white;
 }
 
@@ -108,52 +101,27 @@ body {
         width: 100%;
     }
 }
-</style>
-</head>
-<body>
 
-<div class="header">
-  <h1>Elkour und Kocher Website</h1>
-  <p>Fancy pancy Website.</p>
-</div>
+table, th, td { 
+    border: 1px solid black; border-collapse: collapse; 
+    margin: auto; 
+    text-align: center;
+    height: 40px;
+    vertical-align: bottom;
+    width: auto; 
+}
 
-<div class="navbar">
-  <a href="#">Home</a>
-  <a href="#">Username</a>
-  <a href="#">Einstellungen</a>
-  <a href="logout.php" class="right">Logout</a>
-</div>
+th {
+    background: gainsboro; 
+    font: bold; 
+    font-size: 30px; 
+}
 
-<div class="row">
-  <div class="side">
-      <h2>About Me</h2>
-      <h5>Photo of me:</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-      <h3>More Text</h3>
-      <p>Lorem ipsum dolor sit ame.</p>
-      <div class="fakeimg" style="height:60px;">Image</div><br>
-      <div class="fakeimg" style="height:60px;">Image</div><br>
-      <div class="fakeimg" style="height:60px;">Image</div>
-  </div>
-  <div class="main">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-      <br>
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-  </div>
-</div>
+td {
+    font-size: 20px; 
+}
 
-<div class="footer">
-  <h2>Footer</h2>
-</div>
-
-</body>
-</html>
+tr:nth-child(odd) {
+    background-color: lightGray;
+    width: 100%; 
+}

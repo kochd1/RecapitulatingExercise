@@ -36,8 +36,6 @@ echo "<a> User: ".$_SESSION['user']."</a>";
 </tr>
 
 <?php
-
-
 try {
     $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     /*** echo a message saying we have connected ***/
