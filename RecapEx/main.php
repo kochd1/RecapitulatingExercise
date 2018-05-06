@@ -17,7 +17,7 @@ $logged = false;
 
 if(isset($_SESSION['user'])){
   $logged = true;
-  header("Location: listPatients.php");
+  header("Location: patientList.php");
   exit();
 }
 
@@ -61,7 +61,7 @@ if(!$logged){
 	    echo "<h1> staff : ".$line['staffID']."  ".$line['username']." ".$line['hashed_password']."</h1>\n";
 	    $logged=true;
 	    $_SESSION['user']= $line['username'];
-	    header("Location: listPatients.php");
+	    header("Location: patientList.php");
 	    exit();
       }
       

@@ -12,9 +12,9 @@
 
 <table>
 <tr>
-    <th>Viral Parameter</th>
-    <th>Wert</th>
-    <th>Zeit</th>
+    <th>Vital Sign</th>
+    <th>Value</th>
+    <th>Time</th>
     <th>Note</th>
 </tr>
 
@@ -48,7 +48,6 @@ try {
 
     while($line = $statement0->fetch()){
       echo "<h1> Patient : ".$line['first_name']."  ".$line['name']."</h1>";
-
       echo "<br>\n";
     }
 
@@ -112,8 +111,8 @@ catch(PDOException $e)
       alert('no list');
     }
   }
-
   </script>
+
 <style>
 .Temperature {
     display: none;

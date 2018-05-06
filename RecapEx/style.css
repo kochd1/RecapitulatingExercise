@@ -27,34 +27,12 @@
 }
 
 body { 
-    background: lightBlue 
-}
-table, th, td { 
-    border: 1px solid black; border-collapse: collapse; 
-    margin: auto; 
-    text-align: left;
-    height: 40px;
-    vertical-align: bottom;
-    width: auto; 
-}
-
-th {
-    background: gainsboro; 
-    font: bold; 
-    font-size: 30px; 
-}
-
-td {
-    font-size: 20px; 
+    background: lightGreen 
 }
 
 h1 {
     color: Black; 
     text-align: center;
-}
-tr:nth-child(odd) {
-    background-color: lightGray;
-    width: 100%; 
 }
 
 
