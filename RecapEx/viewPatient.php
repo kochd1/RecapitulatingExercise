@@ -12,26 +12,11 @@
 
 <table>
 <tr>
-    <th>sign_name</th>
-    <th>value</th>
-    <th>time</th>
-    <th>note</th>
+    <th>Viral Parameter</th>
+    <th>Wert</th>
+    <th>Zeit</th>
+    <th>Note</th>
 </tr>
-
-<div>
-<H1><FONT="TIMES ROMAN" FONT-COLOR="BLUE" > SELECT A VITAL SIGN:</H1>
-<select id="vitsin">
-  <option value=""></option>
-  <option value="temp">Temperature</option>
-  <option value="pu">Pulse</option>
-  <option value="act">Activity</option>
-  <option value="BP">Blood Pressure</option>
-  <option value="med">Medication</option>
-</select>
-   <br>
-<input class="SubmitButton" type="submit" name="SUBMITBUTTON" value="Submit" style="font-size:20px; " />
-</div>
-
 
 <?php
 session_start();
@@ -42,7 +27,6 @@ if(!isset($_SESSION['user'])){
   //echo "problem with user";
   exit();
 }
-
 include('pdo.inc.php');
 
 try {
@@ -141,10 +125,6 @@ catch(PDOException $e)
         display: none;
        }
   </style>
-  
-Buttons for displaying just an alert.<br>
-<button onclick="displayVitalSigns('Temperature');">Temperature</button>
-  <button onclick="displayVitalSigns('Pulse');">Pulse</button><button onclick="displayVitalSigns('Activity');">Activity</button>
 
 <div class="btn-group" style="width:100%">
   <button style="width:25%" onclick="displayVitalSigns('Temperature');">Temperature</button>
@@ -190,7 +170,6 @@ catch(PDOException $e)
 }
 
   ?> 
-
 
 </table>
 </body>

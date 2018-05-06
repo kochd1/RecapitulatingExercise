@@ -27,12 +27,11 @@ echo "<a> User: ".$_SESSION['user']."</a>";
 
 <table>
 <tr>
-    <th>patientID</th>
+    <th>Patient ID</th>
     <th>MRN</th>
-    <th>name</th>
-    <th>first_name</th>
-    <th>gender</th>
-    <th>birthdate</th>
+    <th>Name</th>
+    <th>Vorname</th>
+    <th>Geburtsdatum</th>
 </tr>
 
 <?php
@@ -50,7 +49,6 @@ try {
           <td> $row[MRN].</td>
           <td><a href=viewPatient.php?id=$row[patientID]>$row[name]</a>.</td>
           <td> $row[first_name].</td>
-          <td> $row[gender].</td>
           <td> $row[birthdate].</td>
         </tr>";
     }
