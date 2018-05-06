@@ -53,7 +53,7 @@
                   foreach ($dbh -> query($sql) as $row) {
                     echo "<tr>
                       <td> $row[patientID].</td>
-                      <td><a href=viewPatient.php?id=$row[patientID]>$row[name]</a>.</td>
+                      <td><a href=patientVitalSigns.php?id=$row[patientID]>$row[name]</a>.</td>
                       <td> $row[first_name].</td>
                       <td> $row[birthdate].</td>
                     </tr>";

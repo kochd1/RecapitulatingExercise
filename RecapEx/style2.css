@@ -123,3 +123,13 @@ tr:nth-child(odd) {
     background-color: lightGray;
     width: 100%; 
 }
+
+.Temperature {
+    display: none;
+    }
+.Pulse {
+    display: none;
+ }
+  .Activity {
+        display: none;
+       }
