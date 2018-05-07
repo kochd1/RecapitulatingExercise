@@ -10,7 +10,7 @@ body {
 
 /* Header/logo Title */
 .header {
-    padding: 80px;
+    padding: 30px;
     text-align: center;
     background: lightBlue;
     color: white;
@@ -122,6 +122,28 @@ td {
 tr:nth-child(odd) {
     background-color: lightGray;
     width: 100%; 
+}
+
+.btn-primary {
+    width: 75%;
+    padding: 10px;
+    font-size: 14px;
+    color: white;
+    background-color: black;
+    border-radius: 3px;
+    border: none;
+    margin:5px;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    width: 75%;
+    padding: 10px;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+    border: solid 1px black;
+    cursor: pointer;
 }
 
 .Temperature {

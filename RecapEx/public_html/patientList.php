@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
 <link href="style2.css" type="text/css" rel="stylesheet">
@@ -15,7 +15,7 @@
 </div>
 
 <div class="navbar">
-  <a>Home</a>
+  <a style="text-decoration: none;">Home</a>
    <?php
         session_start();
         // First, we test if user is logged. If not, goto main.php (login page).

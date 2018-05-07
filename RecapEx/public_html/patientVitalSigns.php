@@ -34,14 +34,7 @@
   <div class="side">
       <h2>Vital Signs1</h2>
       <h5>Select a Sign:</h5>
-      <div table>
-            <tr>
-                <th>Vital Sign</th>
-                <th>Value</th>
-                <th>Time</th>
-                <th>Note</th>
-            </tr></div>
-          
+      
             <?php
             try {
               $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
@@ -66,40 +59,35 @@
               }
           ?>
               <div class="btn-group" style="width:100%">
-              <button style="width:25%" onclick="displayVitalSigns('Temperature');">Temperature</button>
+              <button class="btn-primary" onclick="displayVitalSigns('Temperature');">Temperature</button>
               <br>
-              <button style="width:25%" onclick="displayVitalSigns('Pulse');">Pulse</button>
+              <button class="btn-primary" onclick="displayVitalSigns('Pulse');">Pulse</button>
               <br>
-              <button style="width:25%" onclick="displayVitalSigns('Activity');">Activity</button>
+              <button class="btn-primary" onclick="displayVitalSigns('Activity');">Activity</button>
               <br>
-              <button style="width:25%">Blood Pressure</button>
+              <button class="btn-primary">Blood Pressure</button>
               <br>
-              <button style="width:25%">Medication</button>
+              <button class="btn-primary">Medication</button>
             </div>
+      
+      <h3>Settings</h3>
+      <p>Add a Medication</p>
+      <div class="fakeimg" style="height:60px;">Image</div><br>
+      <div class="fakeimg" style="height:60px;">Image</div><br>
+      <div class="fakeimg" style="height:60px;">Image</div>
+  </div>
 
-        <script>
-          function displayVitalSigns(sign){
-            var list = document.getElementsByClassName("signs");
-            for(var i in list){
-              if(list[i].style !== undefined){
-                list[i].style.display="none";
-              }
-            }
-            var list2 = document.getElementsByClassName(sign);
-            if(list2){
-              for(var i2 in list2){
-                if(list2[i2].style !== undefined){
-                list2[i2].style.display="block";
-          }
-              }
-            }
-            else{
-              alert('no list');
-            }
-          }
-          </script>
 
-          <?php
+  <div class="main">
+      <h2>Vital signs</h2>
+    <table>
+        <tr>
+          <th>Vital Sign</th>
+          <th>Value</th>
+          <th>Time</th>
+          <th>Note</th>
+        </tr>
+      <?php
                 /*** echo a message saying we have connected ***/
                 $sql = "SELECT sign_name, value, time, note
                         FROM patient, vital_sign, sign
@@ -133,26 +121,7 @@
           }
           
           ?>
-          
-      
-      <h3>Settings</h3>
-      <p>Add a Medication</p>
-      <div class="fakeimg" style="height:60px;">Image</div><br>
-      <div class="fakeimg" style="height:60px;">Image</div><br>
-      <div class="fakeimg" style="height:60px;">Image</div>
-  </div>
-  <div class="main">
-      <h2>Vital signs</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-      <br>
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        </table>
   </div>
 </div>
 
@@ -160,6 +129,26 @@
   <h2>Footer</h2>
 </div>
 
-</table>  
+<script>
+  function displayVitalSigns(sign){
+    var list = document.getElementsByClassName("signs");
+    for(var i in list){
+      if(list[i].style !== undefined){
+        list[i].style.display="none";
+      }
+    }
+    var list2 = document.getElementsByClassName(sign);
+    if(list2){
+      for(var i2 in list2){
+        if(list2[i2].style !== undefined){
+        list2[i2].style.display="block";
+  }
+      }
+    }
+    else{
+      alert('no list');
+    }
+  }
+</script>  
 </body>
 </html>
