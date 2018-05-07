@@ -48,6 +48,27 @@ body {
     color: black;
 }
 
+.menu {
+    list-style: none;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    border-radius: 4px;
+}
+
+.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
 /* Column container */
 .row {  
     display: -ms-flexbox; /* IE10 */
@@ -144,6 +165,10 @@ tr:nth-child(odd) {
     background-color: white;
     border: solid 1px black;
     cursor: pointer;
+}
+
+.btn-primary:active {
+    background-color: red;
 }
 
 .Temperature {

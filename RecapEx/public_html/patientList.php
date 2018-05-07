@@ -15,8 +15,17 @@
 </div>
 
 <div class="navbar">
-  <a style="text-decoration: none;">Home</a>
-   <?php
+  <ul class="menu">
+    <li><a>Home</a></li>
+    <li><a>Einstellungen</a></li>
+    <li><a href="logout.php" class="right">Logout</a></li>
+  </ul>
+</div>
+
+<div class="row">
+  <div class="side">
+    <div class="alert alert-info">
+        <?php
         session_start();
         // First, we test if user is logged. If not, goto main.php (login page).
         if(!isset($_SESSION['user'])){
@@ -26,14 +35,12 @@
         include('pdo.inc.php');
         echo "<a> User: ".$_SESSION['user']."</a>";
      ?>
-  <a>Einstellungen</a>
-  <a href="logout.php" class="right">Logout</a>
-</div>
 
-<div class="row">
-  <div class="side">
+      </div>
       <h2>Patient list</h2>
       <h5>Select Patient:</h5>
+
+      
       <table>
             <tr>
                 <th>Patient ID</th>
