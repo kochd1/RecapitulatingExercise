@@ -6,7 +6,7 @@ session_start();
 
 unset($_SESSION['user']);
 
-header('refresh: 3; url=main.php');
+header('refresh: 3; url=index.php');
 
 
 
@@ -20,7 +20,7 @@ a{font-size: 30px;}
 
 <center> 
     <h2>You've been successfully logged out!</h2>
-    <a href="main.php">Back to login page</a>
+    <a href="index.php">Back to login page</a>
 </center>
 
 
