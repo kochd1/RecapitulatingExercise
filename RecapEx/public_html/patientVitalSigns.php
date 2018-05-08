@@ -99,12 +99,7 @@
               $statement = $dbh->prepare($sql);
               $statement->bindParam(':patientID', $patientID, PDO::PARAM_INT);
               $result = $statement->execute();
-          
-              // while($line = $statement->fetch()){
-              //   echo $line['sign_name']." = ".$line['value']. " at ".$line['time'];
-          
-              //   echo "<br>\n";
-              // }
+ 
               while($line = $statement->fetch()) {
                 echo "<div class='signs ".$line['sign_name']."'>".$line['value']. " at ".$line['time']."</div>";
                 }
