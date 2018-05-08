@@ -15,8 +15,14 @@
 </div>
 
 <div class="navbar">
-  <a href="patientList.php">Back to Home</a>
-   <?php
+  <a href="patientList.php">Home</a>
+  <a href="logout.php" class="right">Logout</a>
+</div>
+
+<div class="row">
+  <div class="side">
+    <div class="alert alert-info">
+        <?php
         session_start();
         // First, we test if user is logged. If not, goto main.php (login page).
         if(!isset($_SESSION['user'])){
@@ -24,17 +30,12 @@
         exit();
         }
         include('pdo.inc.php');
-        echo "<a> User: ".$_SESSION['user']."</a>";
-     ?>
-  <a href="#">Einstellungen</a>
-  <a href="logout.php" class="right">Logout</a>
-</div>
+        echo "<a> Welcome Dr. Marc ".$_SESSION['user']."</a>";
+        ?>
+      </div>
 
-<div class="row">
-  <div class="side">
-      <h2>Vital Signs1</h2>
-      <h5>Select a Sign:</h5>
-      
+      <h2>Vital Signs List</h2>
+
             <?php
             try {
               $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
@@ -54,8 +55,8 @@
               $result0 = $statement0->execute();
           
               while($line = $statement0->fetch()){
-                echo "<h1> Patient : ".$line['first_name']."  ".$line['name']."</h1>";
-                echo "<br>\n";
+                echo "<h2> Patient: ".$line['first_name']."  ".$line['name']."</h2>";
+                echo "<h5>Select a Sign:</h5>"; 
               }
           ?>
               <div class="btn-group" style="width:100%">
