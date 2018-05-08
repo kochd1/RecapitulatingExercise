@@ -72,10 +72,8 @@
             </div>
       
       <h3>Settings</h3>
-      <p>Add a Medication</p>
-      <div class="fakeimg" style="height:60px;">Image</div><br>
-      <div class="fakeimg" style="height:60px;">Image</div><br>
-      <div class="fakeimg" style="height:60px;">Image</div>
+        <p>Add a Medication</p>
+        <button class="btn-primary" id="addMedis"><i class="fas fa-user-plus"></i> Add New Medicament</button>
   </div>
 
 
