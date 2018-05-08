@@ -55,8 +55,8 @@
               $result0 = $statement0->execute();
           
               while($line = $statement0->fetch()){
+                echo "<h5>Select a Sign:</h5>";
                 echo "<h2> Patient: ".$line['first_name']."  ".$line['name']."</h2>";
-                echo "<h5>Select a Sign:</h5>"; 
               }
           ?>
               <div class="btn-group" style="width:100%">
