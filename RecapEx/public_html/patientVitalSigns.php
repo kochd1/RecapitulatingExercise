@@ -11,7 +11,7 @@
 <body>
 
   <div class="header">
-    <h1>Spital Group-I</h1>
+    <h1>Hospital Group-I</h1>
     <p>Care for life</p>
   </div>
 
@@ -78,20 +78,20 @@
 
   <div class="main">
     <h2>Vital signs</h2>
-    <!-- <table>
-        <tr>
-          <th>Vital Sign</th>
-          <th>Value</th>
-          <th>Time</th>
-          <th>Note</th>
-        </tr> -->
+
     <?php
                 /*** echo a message saying we have connected ***/
                 if ($patientID > 0) {
                 $sql = "SELECT sign.signID, sign_name, value, time, note
                         FROM patient, vital_sign, sign
                         WHERE patient.patientID = vital_sign.patientID
-                        AND vital_sign.signID = sign.signID";
+                        AND vital_sign.signID = sign.signID
+                        AND patient.patientID = :patientID";
+
+              $patientID=0;
+              if(isset($_GET['id'])) {
+                $patientID = (int)($_GET['id']);
+              }
           
               $statement = $dbh->prepare($sql);
               $statement->bindParam(':patientID', $patientID, PDO::PARAM_INT);
@@ -116,20 +116,11 @@
                }
               echo '</table>';
               echo '<div id="warning" class="signs">No List exists</div>';
-              //   While ($line = $statement->fetch()) {
-              //     echo "<tr>
-              //       <td> $line[sign_name].</td>
-              //       <td> $line[value].</td>
-              //       <td> $line[time].</td>
-              //       <td> $line[note].</td>
-              //     </tr>";
-              // }
               }
             }
               else{
                 echo "<h1>The patient does not exist</h1>";
               }
-          
               //$dbh = null;
           }
           catch(PDOException $e)
@@ -139,10 +130,6 @@
           }
           
           ?>
-      <!-- </table>  -->
-
-
-
   </div>
 
   <div class="footer">

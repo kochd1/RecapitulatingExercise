@@ -1,51 +1,51 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
-<link href="style2.css" type="text/css" rel="stylesheet">
-<title>Hospital Home</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style2.css" type="text/css" rel="stylesheet">
+  <title>Hospital Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 
-<div class="header">
-  <h1>Spital Group-I</h1>
-  <p>Care for life</p>
-</div>
+  <div class="header">
+    <h1>Hospital Group-I</h1>
+    <p>Care for life</p>
+  </div>
 
-<div class="navbar">
+  <div class="navbar">
     <a>Home</a>
     <a href="logout.php" class="right">Logout</a>
-</div>
+  </div>
 
-<div class="row">
-  <div class="side">
+  <div class="slide">
     <div class="alert alert-info">
-        <?php
+      <?php
         session_start();
         // First, we test if user is logged. If not, goto main.php (login page).
         if(!isset($_SESSION['user'])){
-        header("Location: main.php");
+        header("Location: index.php");
         exit();
         }
         include('pdo.inc.php');
         echo "<a> Welcome Dr. Marc ".$_SESSION['user']."</a>";
      ?>
 
-      </div>
-      <h2>Patient list</h2>
-      <h5>Select Patient:</h5>
+    </div>
+    <h2>Patient list</h2>
+    <h5>Select Patient:</h5>
 
-      <table>
-            <tr>
-                <th>Patient ID</th>
-                <th>Name</th>
-                <th>First Name</th>
-                <th>Birthdate</th>
-            </tr>
+    <table>
+      <tr>
+        <th>Patient ID</th>
+        <th>Name</th>
+        <th>First Name</th>
+        <th>Birthdate</th>
+      </tr>
 
-            <?php
+      <?php
             try {
                 $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
                 /*** echo a message saying we have connected ***/
@@ -70,63 +70,76 @@
                 /*** echo the sql statement and error message ***/
                 echo $e->getMessage();
             }
-            ?> </table>
-    
-      <h3>Settings</h3>
-  <button class="button" id="addPatient"><i class="fas fa-user-plus"></i> New patient</button>
-  <div id="modalPatient" class="modal">
-      
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Add patient</h2>
-          <form action="index.php" method="get">
-      <input type="hidden" name="id" value="">
+            ?>
+    </table>
+
+    <h3>Settings</h3>
+    <button class="button" id="addPatient">
+      <i class="fas fa-user-plus"></i> New patient</button>
+    <div id="modalPatient" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Add patient</h2>
+        <form action="index.php" method="get">
+          <input type="hidden" name="id" value="">
           <table>
-        <tr>
-            <td>Surname</td>
-          <td><input type="text" name="time" placeholder=""></td>
-        </tr>
-              <tr>
-                <td>First name</td>
-                  <td><input type="text" name="time" placeholder=""></td>
-              </tr>
-              <tr>
-                <td>Gender 1=male 2=female</td>
-                  <td><input type="text" name="gender" placeholder=""></td>
-              </tr>
-              <tr>
-                <td>Date of birth</td>
-                  <td><input type="text" name="time" placeholder="YYYY-MM-DD"></td>
-              </tr>
+            <tr>
+              <td>Surname</td>
+              <td>
+                <input type="text" name="time" placeholder="">
+              </td>
+            </tr>
+            <tr>
+              <td>First name</td>
+              <td>
+                <input type="text" name="time" placeholder="">
+              </td>
+            </tr>
+            <tr>
+              <td>Gender 1=male 2=female</td>
+              <td>
+                <input type="text" name="gender" placeholder="">
+              </td>
+            </tr>
+            <tr>
+              <td>Date of birth</td>
+              <td>
+                <input type="text" name="time" placeholder="YYYY-MM-DD">
+              </td>
+            </tr>
           </table>
           <input type="submit" value="Submit">
-      </form>
-        </div>
-      
+        </form>
       </div>
-      
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <h2>Footer</h2>
+  </div>
+
   <script>
     var modal = document.getElementById('modalPatient');
     var btn = document.getElementById("addPatient");
     var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function() {
+    btn.onclick = function () {
       modal.style.display = "block";
     }
-    
-    span.onclick = function() {
+
+    span.onclick = function () {
       modal.style.display = "none";
     }
-    
-    window.onclick = function(event) {
+
+    window.onclick = function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
     }
   </script>
-      
-  </div>
-
 
 </body>
+
 </html>
