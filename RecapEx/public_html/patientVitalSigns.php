@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<link href="style2.css" type="text/css" rel="stylesheet">
-<title>Patient Vital Signs</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style2.css" type="text/css" rel="stylesheet">
+  <title>Patient Vital Signs</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 
-<div class="header">
-  <h1>Spital Group-I</h1>
-  <p>Care for life</p>
-</div>
+  <div class="header">
+    <h1>Spital Group-I</h1>
+    <p>Care for life</p>
+  </div>
 
-<div class="navbar">
-  <a href="patientList.php">Home</a>
-  <a href="logout.php" class="right">Logout</a>
-</div>
+  <div class="navbar">
+    <a href="patientList.php">Home</a>
+    <a href="logout.php" class="right">Logout</a>
+  </div>
 
-<div class="row">
+
   <div class="side">
     <div class="alert alert-info">
-        <?php
+      <?php
         session_start();
         // First, we test if user is logged. If not, goto main.php (login page).
         if(!isset($_SESSION['user'])){
-        header("Location: main.php");
+        header("Location: index.php");
         exit();
         }
         include('pdo.inc.php');
         echo "<a> Welcome Dr. Marc ".$_SESSION['user']."</a>";
         ?>
-      </div>
+    </div>
 
-      <h2>Vital Signs List</h2>
+    <h2>Vital Signs List</h2>
 
-            <?php
+    <?php
             try {
               $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     
@@ -55,53 +56,76 @@
               $result0 = $statement0->execute();
           
               while($line = $statement0->fetch()){
-                echo "<h5>Select a Sign:</h5>";
                 echo "<h2> Patient: ".$line['first_name']."  ".$line['name']."</h2>";
+                echo "<h5>Select a Sign:</h5>";
               }
           ?>
-              <div class="btn-group" style="width:100%">
-              <button class="btn-primary" onclick="displayVitalSigns('Temperature');">Temperature</button>
-              <br>
-              <button class="btn-primary" onclick="displayVitalSigns('Pulse');">Pulse</button>
-              <br>
-              <button class="btn-primary" onclick="displayVitalSigns('Activity');">Activity</button>
-              <br>
-              <button class="btn-primary">Blood Pressure</button>
-              <br>
-              <button class="btn-primary">Medication</button>
-            </div>
-      
+      <div class="btn-group" style="width:100%">
+        <button class="btn-primary" onclick="displayVitalSigns('temperature');">Temperature</button>
+        <button class="btn-primary" onclick="displayVitalSigns('pulse');">Pulse</button>
+        <button class="btn-primary" onclick="displayVitalSigns('activity');">Activity</button>
+        <button class="btn-primary" onclick="displayVitalSigns('bloodpressure');">Blood Pressure</button>
+        <h2>Medicaments List</h2>
+        <button class="btn-primary" onclick="displayMedicaments('Medicament');">Medicament</button>
+      </div>
+
       <h3>Settings</h3>
-        <p>Add a Medication</p>
-        <button class="btn-primary" id="addMedis"><i class="fas fa-user-plus"></i> Add New Medicament</button>
+      <p>Add a Medication</p>
+      <button class="btn-primary" id="addValue">
+        <i class="fas fa-user-plus"></i> Add New Medicament</button>
   </div>
 
 
   <div class="main">
-      <h2>Vital signs</h2>
-    <table>
+    <h2>Vital signs</h2>
+    <!-- <table>
         <tr>
           <th>Vital Sign</th>
           <th>Value</th>
           <th>Time</th>
           <th>Note</th>
-        </tr>
-      <?php
+        </tr> -->
+    <?php
                 /*** echo a message saying we have connected ***/
-                $sql = "SELECT sign_name, value, time, note
+                if ($patientID > 0) {
+                $sql = "SELECT sign.signID, sign_name, value, time, note
                         FROM patient, vital_sign, sign
                         WHERE patient.patientID = vital_sign.patientID
-                        AND vital_sign.signID = sign.signID 
-                        AND patient.patientID = :patientID";
+                        AND vital_sign.signID = sign.signID";
           
               $statement = $dbh->prepare($sql);
               $statement->bindParam(':patientID', $patientID, PDO::PARAM_INT);
               $result = $statement->execute();
- 
+              
+              $i = 0;
               while($line = $statement->fetch()) {
-                echo "<div class='signs ".$line['sign_name']."'>".$line['value']. " at ".$line['time']."</div>";
-                }
+                  if($i == 0){
+                    echo "<table id='".strtolower($line['sign_name'])."' class='signs'>";
+                    $i++;
+                  } else if ($line['signID'] > $i){
+                    echo "</table>";
+                    echo "<table id='".strtolower($line['sign_name'])."' class='signs'>";
+                    $i++;
+                  }
+                  echo "<tr>";
+                  echo "<td>".$line['sign_name']."</td>";
+                  echo "<td>".$line['value']."</td>";
+                  echo "<td>".$line['time']."</td>";
+                  echo "<td>".$line['note']."</td>";  
+                  echo "</tr>";
+               }
+              echo '</table>';
+              echo '<div id="warning" class="signs">No List exists</div>';
+              //   While ($line = $statement->fetch()) {
+              //     echo "<tr>
+              //       <td> $line[sign_name].</td>
+              //       <td> $line[value].</td>
+              //       <td> $line[time].</td>
+              //       <td> $line[note].</td>
+              //     </tr>";
+              // }
               }
+            }
               else{
                 echo "<h1>The patient does not exist</h1>";
               }
@@ -115,34 +139,30 @@
           }
           
           ?>
-        </table>
+      <!-- </table>  -->
+
+
+
   </div>
-</div>
 
-<div class="footer">
-  <h2>Footer</h2>
-</div>
+  <div class="footer">
+    <h2>Footer</h2>
+  </div>
 
-<script>
-  function displayVitalSigns(sign){
-    var list = document.getElementsByClassName("signs");
-    for(var i in list){
-      if(list[i].style !== undefined){
-        list[i].style.display="none";
+  <script>
+    function displayVitalSigns(sign) {
+      var list = document.getElementsByClassName("signs");
+      for (var i = 0; i < list.length; i++) {
+        list[i].style.display = "none";
       }
-    }
-    var list2 = document.getElementsByClassName(sign);
-    if(list2){
-      for(var i2 in list2){
-        if(list2[i2].style !== undefined){
-        list2[i2].style.display="block";
-  }
+      try {
+        document.getElementById(sign).style.display = "table";
+      } catch (err) {
+        document.getElementById('warning').style.display = "block";
       }
+
     }
-    else{
-      alert('no list');
-    }
-  }
-</script>  
+  </script>
 </body>
+
 </html>
