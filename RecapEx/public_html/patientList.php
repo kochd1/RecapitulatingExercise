@@ -118,7 +118,9 @@
   </div>
 
   <div class="footer">
-    <h2>Footer</h2>
+    <h6>With a call to Group-I Hospital, you have immediate access to our highly trained staff, 24 hours a day, seven days a week, who can assess an individual in crisis and arrange admission to the appropriate level of care.
+    <br/> This confidential assessment and referral is free of charge. Whatever the need, at any time of the day or night, high quality care is as close as a telephone.
+    <br/>Hospital Group-I, Legend street 22, 32200 Switzerland, Tel.: +41 62 000 00 00</h>
   </div>
 
   <script>
@@ -141,5 +143,4 @@
   </script>
 
 </body>
-
 </html>

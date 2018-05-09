@@ -241,7 +241,7 @@ fieldset{background-color: white;
 
 
 
-  <h1>Welcome to Hospital Group I</h1>
+  <h1>Welcome to Hospital Group-I</h1>
 
   <center><div>
     <form method='POST'>
