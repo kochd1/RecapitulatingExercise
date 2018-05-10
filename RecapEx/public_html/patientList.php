@@ -70,18 +70,20 @@
                 /*** echo the sql statement and error message ***/
                 echo $e->getMessage();
             }
+
+
             ?>
     </table>
 
-    <h3>Settings</h3>
     <button class="button" id="addPatient">
-      <i class="fas fa-user-plus"></i> New patient</button>
+      <i class="fas fa-user-plus"></i> Add new patient</button>
     <div id="modalPatient" class="modal">
 
       <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Add patient</h2>
+     <div class="modal-content">
+    
+        <!-- form to add a new patient-->
+        
         <form action="index.php" method="get">
           <input type="hidden" name="id" value="">
           <table>
@@ -110,24 +112,21 @@
               </td>
             </tr>
           </table>
-          <input type="submit" value="Submit">
+          <input type="submit" value="Submit"> <button type="button" class="close" id="cancle">Cancle</button>
         </form>
       </div>
 
     </div>
   </div>
 
-  <div class="footer">
-    <h6>With a call to Group-I Hospital, you have immediate access to our highly trained staff, 24 hours a day, seven days a week, who can assess an individual in crisis and arrange admission to the appropriate level of care.
-    <br/> This confidential assessment and referral is free of charge. Whatever the need, at any time of the day or night, high quality care is as close as a telephone.
-    <br/>Hospital Group-I, Legend street 22, 32200 Switzerland, Tel.: +41 62 000 00 00</h>
-  </div>
 
   <script>
     var modal = document.getElementById('modalPatient');
-    var btn = document.getElementById("addPatient");
+    modal.style.display ="none";
+
+    var addBtn = document.getElementById("addPatient");
     var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function () {
+    addBtn.onclick = function () {
       modal.style.display = "block";
     }
 
@@ -141,6 +140,14 @@
       }
     }
   </script>
+
+<!--footer of this page-->
+
+  <div class="footer">
+    <h6>With a call to Group-I Hospital, you have immediate access to our highly trained staff, 24 hours a day, seven days a week, who can assess an individual in crisis and arrange admission to the appropriate level of care.
+    <br/> This confidential assessment and referral is free of charge. Whatever the need, at any time of the day or night, high quality care is as close as a telephone.
+    <br/>Hospital Group-I, Legend street 22, 9999 Switzerland, Tel.: +41 99 000 00 00</h>
+  </div>
 
 </body>
 </html>
