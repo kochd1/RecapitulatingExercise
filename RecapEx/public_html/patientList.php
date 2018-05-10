@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
   <link href="style2.css" type="text/css" rel="stylesheet">
   <title>Hospital Home</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 
 <body>
 
@@ -34,6 +36,8 @@
      ?>
 
     </div>
+
+    <div style= "margin-left: 10px;">
     <h2>Patient list</h2>
     <h5>Select Patient:</h5>
 
@@ -44,6 +48,8 @@
         <th>First Name</th>
         <th>Birthdate</th>
       </tr>
+
+    </div>
 
       <?php
             try {
@@ -75,7 +81,7 @@
             ?>
     </table>
 
-    <button class="button" id="addPatient">
+    <button class="button" id="addPatient" style= "margin-top: 5px; margin-bottom: 5px;">
       <i class="fas fa-user-plus"></i> Add new patient</button>
     <div id="modalPatient" class="modal">
 
@@ -112,7 +118,7 @@
               </td>
             </tr>
           </table>
-          <input type="submit" value="Submit"> <button type="button" class="close" id="cancle">Cancle</button>
+          <input type="submit" value="Submit" style= "margin-top: 5px; margin-bottom: 5px;"> <button type="button" class="close" id="cancle" style= "margin-top: 5px; margin-bottom: 5px;">Cancle</button>
         </form>
       </div>
 
