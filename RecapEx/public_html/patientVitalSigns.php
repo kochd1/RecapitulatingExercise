@@ -59,20 +59,32 @@
                 echo "<h2> Patient: ".$line['first_name']."  ".$line['name']."</h2>";
                 echo "<h5>Select a Sign:</h5>";
               }
+             } else{
+                echo "<h1>The patient does not exist</h1>";
+              }
+              //$dbh = null;
+          }
+          catch(PDOException $e)
+          {
+              /*** echo the sql statement and error message ***/
+              echo $e->getMessage();
+          }
+        
           ?>
+
       <div class="btn-group" style="width:100%">
         <button class="btn-primary" onclick="displayVitalSigns('temperature');">Temperature</button>
         <button class="btn-primary" onclick="displayVitalSigns('pulse');">Pulse</button>
         <button class="btn-primary" onclick="displayVitalSigns('activity');">Activity</button>
         <button class="btn-primary" onclick="displayVitalSigns('bloodpressure');">Blood Pressure</button>
-        <h2>Medicaments List</h2>
-        <button class="btn-primary" onclick="displayMedicaments('Medicament');">Medicament</button>
+        <h2>Medicine List</h2>
+        <button class="btn-primary" onclick="displayMedicicine('medicine');">Medicine</button>
       </div>
 
       <h3>Settings</h3>
-      <p>Add a Medication</p>
+      <p>Add a Medicine</p>
       <button class="btn-primary" id="addValue">
-        <i class="fas fa-user-plus"></i> Add New Medicament</button>
+        <i class="fas fa-user-plus"></i> Add New Medicine</button>
   </div>
 
 
@@ -88,7 +100,6 @@
                         AND vital_sign.signID = sign.signID
                         AND patient.patientID = :patientID";
 
-              $patientID=0;
               if(isset($_GET['id'])) {
                 $patientID = (int)($_GET['id']);
               }
@@ -117,25 +128,55 @@
               echo '</table>';
               echo '<div id="warning" class="signs">No List exists</div>';
               }
-            }
               else{
                 echo "<h1>The patient does not exist</h1>";
               }
-              //$dbh = null;
-          }
-          catch(PDOException $e)
-          {
-              /*** echo the sql statement and error message ***/
-              echo $e->getMessage();
-          }
+      
+          ?>
+
+      <?php
+       
+                /*** echo a message saying we have connected ***/
+                if ($patientID > 0) {
+                $sql2 = "SELECT m.medicineID, m.medicamentID, m.time, m.quantity, me.medicament_name, m.note
+                                FROM medicine m, medicament me
+                                WHERE m.medicineID = me.medicamentID
+                                AND m.medicineID = :patientID";  
+                                
+                 if(isset($_GET['id'])) {
+                 $patientID = (int)($_GET['id']);
+                 }
+                 
+              $statement2 = $dbh->prepare($sql2);
+              $statement2->bindParam(':patientID', $patientID, PDO::PARAM_INT);
+              $result2 = $statement2->execute();
+              
+              $i = 0;  
+              while($line2 = $statement2->fetch()) {
+                if($i == 0){
+                  echo "<table id='".strtolower($line2['medicamentID'])."' class='medis'>";
+                  $i++;
+                } else if ($line2['medicineID'] > $i){
+                  echo "</table>";
+                  echo "<table id='".strtolower($line2['medicamentID'])."' class='medis'>";
+                  $i++;
+                }
+                  echo "<tr>";
+                  echo "<td>".$line2['medicineID']."</td>";
+                  echo "<td>".$line2['time']."</td>";
+                  echo "<td>".$line2['quantity']."</td>";
+                  echo "<td>".$line2['medicament_name']."</td>";
+                  echo "<td>".$line2['note']."</td>";  
+                  echo "</tr>";
+               }
+              echo '</table>';
+              echo '<div id="warning2" class="medis">No List exists</div>';
+              }
+              else{
+                echo "<h1>The patient does not exist</h1>";
+              }
           
           ?>
-  </div>
-
-   <div class="footer">
-    <h6>With a call to Group-I Hospital, you have immediate access to our highly trained staff, 24 hours a day, seven days a week, who can assess an individual in crisis and arrange admission to the appropriate level of care.
-    <br/> This confidential assessment and referral is free of charge. Whatever the need, at any time of the day or night, high quality care is as close as a telephone.
-    <br/>Hospital Group-I, Legend street 22, 32200 Switzerland, Tel.: +41 62 000 00 00</h>
   </div>
 
   <script>
@@ -144,10 +185,25 @@
       for (var i = 0; i < list.length; i++) {
         list[i].style.display = "none";
       }
-      try {
+      try {        
         document.getElementById(sign).style.display = "table";
       } catch (err) {
         document.getElementById('warning').style.display = "block";
+      }
+
+    }
+
+    function displayMedicicine(medi) {
+      var list = document.getElementsByClassName("medis");
+      for (var i = 0; i < list.length; i++) {
+        list[i].style.display = "none";
+      }
+      try {         
+        console.log(document.getElementById(medi));
+        
+        document.getElementById(medi).style.display = "table";
+      } catch (err) {
+        document.getElementById('warning2').style.display = "block";
       }
 
     }

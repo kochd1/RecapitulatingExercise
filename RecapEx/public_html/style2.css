@@ -121,14 +121,6 @@ body {
 
 /* Footer */
 
-.footer {
-    padding: 20px;
-    text-align: center;
-    background: #ddd;
-    width: 100%;
-    position: absolute;
-    bottom: -55.5vh;
-}
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 
@@ -151,6 +143,10 @@ body {
     display: none;
 }
 
+.medis {
+    display: none;
+}
+
 th {
     background: gainsboro;
     font: bold;
@@ -166,6 +162,14 @@ tr:nth-child(odd) {
 }
 
 #warning {
+    padding: 20px;
+    background-color: pink;
+    border: 1px solid red;
+    border-radius: 5px;
+    color: red;
+}
+
+#warning2 {
     padding: 20px;
     background-color: pink;
     border: 1px solid red;
@@ -193,10 +197,6 @@ tr:nth-child(odd) {
     background-color: white;
     border: solid 1px black;
     cursor: pointer;
-}
-
-.btn-primary:active {
-    background-color: red;
 }
 
 .Temperature {
