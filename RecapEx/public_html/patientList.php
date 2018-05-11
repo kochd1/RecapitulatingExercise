@@ -98,13 +98,13 @@
             <tr class="data">
               <td>Surname</td>
               <td class="inputValue">
-                <input type="text" name="surname" placeholder="" required>
+                <input type="text" name="surname" placeholder="Surname" required>
               </td>
             </tr>
             <tr class="data">
               <td>First name</td>
               <td class="inputValue">
-                <input type="text" name="firstName" placeholder="" required>
+                <input type="text" name="firstName" placeholder="First name" required>
               </td>
             </tr>
             <tr class="data">
