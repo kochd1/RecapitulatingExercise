@@ -1,15 +1,30 @@
 
 <?php
 
+include('pdo.inc.php');
+error_reporting(0);
 
-/*** mysql hostname ***/
-/*$hostname = 'localhost';
+$SurName = $_POST['surname'];
+$firstName = $_POST['firstName'];
+$gender = $_POST['gender'];
+$DateOfBirth = $_POST['dateOfBirth'];
 
-/*** mysql username ***/
-/*$username = 'macmanu_groupI';
+if(!_POST['submit']){
+    echo "All fields are required";
+}
 
-/*** mysql password ***/
-/*$password = 'JkU763Jjuu*oY23';
-$dbname = 'macmanu_groupI';*/
+else{
+    $sql = "INSERT into Patient (name, first_name, gender, birthdate)
+    values('$SurName', '$firstName', '$gender', '$DateOfBirth') ";
+
+    if(mysql_query($conn, $sql)){
+    echo "Data creation successful";
+
+    }
+
+    else{
+        echo"Something went wrong!";
+    }
+    }
 
 ?>

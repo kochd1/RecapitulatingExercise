@@ -37,6 +37,9 @@
         echo "<a> Welcome Dr. Marc ".$_SESSION['user']."</a>";
      ?>
 
+
+     
+
     </div>
 
     <div style= "margin-left: 10px;">
@@ -81,6 +84,38 @@
 
 
             ?>
+
+            <?php
+
+/*include('pdo.inc.php');
+error_reporting(0);
+
+$SurName = $_POST['surname'];
+$firstName = $_POST['firstName'];
+$gender = $_POST['gender'];
+$DateOfBirth = $_POST['dateOfBirth'];
+
+if(!_POST['submit']){
+    echo "All fields are required";
+}
+
+else{
+    $sql = "INSERT into Patient (name, first_name, gender, birthdate)
+    values('$SurName', '$firstName', '$gender', '$DateOfBirth') ";
+
+    if(mysql_query($conn, $sql)){
+    echo "Data creation successful";
+
+    }
+
+    else{
+        echo"Something went wrong!";
+    }
+    }
+*/
+?>
+
+
     </table>
 
     <button class="button" id="addPatient" style= "margin-top: 5px; margin-bottom: 5px;">
@@ -92,32 +127,32 @@
     
         <!-- form to add a new patient-->
         
-        <form id="newPatientForm" action="addNewPatient.php" method='POST'>
+        <form id="newPatientForm" action="" method='POST'>
           <input type="hidden" name="newPatient" value="">
-          <table>
-            <tr>
+          <table id= "newPatientData" class="newPatientData">
+            <tr class="data">
               <td>Surname</td>
-              <td>
-                <input type="text" name="time" placeholder="">
+              <td class="inputValue">
+                <input type="text" name="surname" placeholder="" required>
               </td>
             </tr>
-            <tr>
+            <tr class="data">
               <td>First name</td>
-              <td>
-                <input type="text" name="time" placeholder="">
+              <td class="inputValue">
+                <input type="text" name="firstName" placeholder="" required>
               </td>
             </tr>
-            <tr>
+            <tr class="data">
               <td>Gender</td>
-              <td>
-                <input type="radio" name="gender" value="1"> Male<br>
-                <input type="radio" name="gender" value="2"> Female<br>
+              <td class="inputValue">
+                <input type="radio" name="gender" value="1" required> Male<br>
+                <input type="radio" name="gender" value="2" required> Female<br>
               </td>
             </tr>
-            <tr>
+            <tr class="data">
               <td>Date of birth</td>
-              <td>
-                <input type="text" name="time" placeholder="YYYY-MM-DD">
+              <td class="inputValue">
+                <input type="text" name="dateOfBirth" placeholder="YYYY-MM-DD" required>
               </td>
             </tr>
           </table>
@@ -128,9 +163,38 @@
     </div>
   </div>
 
+<!--onclick = "submitData()";-->
+
+  <!--<script>
+  fuction submitData(){
+    document.getElementbyId("newPatientForm").submit();
+  }
+  </script>-->
+
+<!--
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+$("#submit").on('click', function (e) {
+    e.preventDefault();
+    var data = $("#newPatientData tr.data").map(function (index, elem) {
+        var ret = [];
+        $('.inputValue', this).each(function () {
+            var d = $(this).val()||$(this).text();
+            ret.push(d);
+            console.log(d);
+            if (d == "N/A") {
+                console.log(true);
+            }
+        });
+        return ret;
+    });
+    console.log(data);
+    console.log(data[0]);
+});
+
+</script>-->
   <!-- Use jQuery to read data from table-->
 
-<script>
+<!--<script>
   $('id').each(function(row, tr){
 
     TableData = TableData
@@ -140,10 +204,10 @@
     + $(tr).find('td:eq(3)').text() + ' ' //Birthdate
     +'\n';
 
-  console.log(TableData);
+
   });
 
-  </script>
+  </script>-->
 
 <!--script to handle modal-->
 
