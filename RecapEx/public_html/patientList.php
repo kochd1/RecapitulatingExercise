@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+<!-- head of this website-->
 
 <head>
   <link href="style2.css" type="text/css" rel="stylesheet">
@@ -9,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
+<!-- body of this website-->
 
 <body>
 
@@ -26,7 +28,7 @@
     <div class="alert alert-info">
       <?php
         session_start();
-        // First, we test if user is logged. If not, goto main.php (login page).
+        // First, we test if user is logged. If not, goto index.php (login page).
         if(!isset($_SESSION['user'])){
         header("Location: index.php");
         exit();
@@ -90,8 +92,8 @@
     
         <!-- form to add a new patient-->
         
-        <form action="index.php" method="get">
-          <input type="hidden" name="id" value="">
+        <form id="newPatientForm" action="addNewPatient.php" method='POST'>
+          <input type="hidden" name="newPatient" value="">
           <table>
             <tr>
               <td>Surname</td>
@@ -106,9 +108,10 @@
               </td>
             </tr>
             <tr>
-              <td>Gender 1=male 2=female</td>
+              <td>Gender</td>
               <td>
-                <input type="text" name="gender" placeholder="">
+                <input type="radio" name="gender" value="1"> Male<br>
+                <input type="radio" name="gender" value="2"> Female<br>
               </td>
             </tr>
             <tr>
@@ -118,13 +121,31 @@
               </td>
             </tr>
           </table>
-          <input type="submit" value="Submit" style= "margin-top: 5px; margin-bottom: 5px;"> <button type="button" class="close" id="cancle" style= "margin-top: 5px; margin-bottom: 5px;">Cancle</button>
+          <input type="submit" value="Submit" style= "margin-top: 5px; margin-bottom: 5px;"> <button type="button" class="close" id="cancel" style= "margin-top: 5px; margin-bottom: 5px;">Cancel</button>
         </form>
       </div>
 
     </div>
   </div>
 
+  <!-- Use jQuery to read data from table-->
+
+<script>
+  $('id').each(function(row, tr){
+
+    TableData = TableData
+    + $(tr).find('td:eq(0)').text() + ' ' //Patient ID
+    + $(tr).find('td:eq(1)').text() + ' ' //Name
+    + $(tr).find('td:eq(2)').text() + ' ' //First Name
+    + $(tr).find('td:eq(3)').text() + ' ' //Birthdate
+    +'\n';
+
+  console.log(TableData);
+  });
+
+  </script>
+
+<!--script to handle modal-->
 
   <script>
     var modal = document.getElementById('modalPatient');
