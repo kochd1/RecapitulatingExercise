@@ -25,7 +25,7 @@
     <div class="alert alert-info">
       <?php
         session_start();
-        // First, we test if user is logged. If not, goto main.php (login page).
+        // First, we test if user is logged. If not, goto index.php (login page).
         if(!isset($_SESSION['user'])){
         header("Location: index.php");
         exit();
@@ -83,16 +83,14 @@
 
       <h3>Settings</h3>
       <p>Add a Medicine</p>
-      <button class="btn-primary" id="addValue">
-        <i class="fas fa-user-plus"></i> Add New Medicine</button>
+      <button class="btn-primary" id="addValue" onclick="displayNewMedicinePopup()'">Add New Medicine</button>
   </div>
 
 
   <div class="main">
-    <h2>Vital signs</h2>
+    <h2>Vital Signs and Medicines</h2>
 
     <?php
-                /*** echo a message saying we have connected ***/
                 if ($patientID > 0) {
                 $sql = "SELECT sign.signID, sign_name, value, time, note
                         FROM patient, vital_sign, sign
@@ -112,11 +110,23 @@
               while($line = $statement->fetch()) {
                   if($i == 0){
                     echo "<table id='".strtolower($line['sign_name'])."' class='signs'>";
+                    echo "<tr>";
+                    echo "<th>"."Sign Name"."</th>";
+                    echo "<th>"."Value"."</th>";
+                    echo "<th>"."Time"."</th>";
+                    echo "<th>"."Note"."</th>";  
+                    echo "</tr>";
                     $i++;
                   } else if ($line['signID'] > $i){
                     echo "</table>";
                     echo "<table id='".strtolower($line['sign_name'])."' class='signs'>";
                     $i++;
+                    echo "<tr>";
+                    echo "<th>"."Sign Name"."</th>";
+                    echo "<th>"."Value"."</th>";
+                    echo "<th>"."Time"."</th>";
+                    echo "<th>"."Note"."</th>";  
+                    echo "</tr>";
                   }
                   echo "<tr>";
                   echo "<td>".$line['sign_name']."</td>";
@@ -135,8 +145,6 @@
           ?>
 
       <?php
-       
-                /*** echo a message saying we have connected ***/
                 if ($patientID > 0) {
                 $sql2 = "SELECT m.medicineID, m.medicamentID, m.time, m.quantity, me.medicament_name, m.note
                                 FROM medicine m, medicament me
@@ -156,10 +164,24 @@
                 if($i == 0){
                   echo "<table id='"."medicine"."' class='medis'>";
                   $i++;
+                  echo "<tr>";
+                  echo "<th>"."Medicine ID"."</th>";
+                  echo "<th>"."Time"."</th>";
+                  echo "<th>"."Quantity"."</th>";
+                  echo "<th>"."Meicament Name"."</th>";  
+                  echo "<th>"."Note"."</th>";  
+                  echo "</tr>";
                 } else if ($line2['medicineID'] > $i){
                   echo "</table>";
                   echo "<table id='"."medicine"."' class='medis'>";
                   $i++;
+                  echo "<tr>";
+                  echo "<th>"."Medicine ID"."</th>";
+                  echo "<th>"."Time"."</th>";
+                  echo "<th>"."Quantity"."</th>";
+                  echo "<th>"."Meicament Name"."</th>";  
+                  echo "<th>"."Note"."</th>";  
+                  echo "</tr>";
                 }
                   echo "<tr>";
                   echo "<td>".$line2['medicineID']."</td>";
@@ -177,7 +199,64 @@
               }
           
           ?>
+
+
+        <div id= "addValue" class="popup">     
+        <form action="patientVitalSigns.php" method="get">
+          <input type="hidden" name="id" value="1">
+          <table>
+            <tr>
+              <td>Medicament</td>
+              <td>
+                <select name="medicamentID">
+                  <option value="4">Adrenalin</option>
+                  <option value="2">Aspirin 1000 mg</option>
+                  <option value="1">Aspirin 500mg</option>
+                  <option value="3">Morphin</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Quantity</td>
+              <td>
+                <input type="text" name="quantity">
+              </td>
+            </tr>
+            <tr>
+              <td>Note</td>
+              <td>
+                <textarea name="note"></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>Date/time</td>
+              <td>
+                <input type="text" name="time" placeholder="DD.MM.YYYY hh:mm:ss">
+              </td>
+            </tr>
+            <tr>
+              <td>Nurse</td>
+              <td>
+                <select name="nurseID">
+                  <option value="1">Chris Taub</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Physician</td>
+              <td>
+                <select name="physicianID">
+                  <option value="2">Gregory House</option>
+                  <option value="2">James Wilson</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+          <input type="submit" value="Submit">
+        </form>
+        </div> 
   </div>
+
 
   <script>
     function displayVitalSigns(sign) {
@@ -185,7 +264,7 @@
       for (var i = 0; i < list.length; i++) {
         list[i].style.display = "none";
       }
-      try {        
+      try {
         document.getElementById(sign).style.display = "table";
       } catch (err) {
         document.getElementById('warning').style.display = "block";
@@ -198,10 +277,16 @@
       for (var i = 0; i < list.length; i++) {
         list[i].style.display = "none";
       }
-      try { 
+      try {
         document.getElementById(medi).style.display = "table";
       } catch (err) {
         document.getElementById('warning2').style.display = "block";
+      }
+
+
+      function displayNewMedicinePopup() {
+        var popup = document.getElementById("addValue");
+        popup.classList.toggle("show");
       }
 
     }

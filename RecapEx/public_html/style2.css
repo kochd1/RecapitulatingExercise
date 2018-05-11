@@ -210,3 +210,7 @@ tr:nth-child(odd) {
 .Activity {
     display: none;
 }
+
+.popup {
+    display: none; 
+}
