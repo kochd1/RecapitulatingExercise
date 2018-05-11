@@ -85,35 +85,6 @@
 
             ?>
 
-            <?php
-
-/*include('pdo.inc.php');
-error_reporting(0);
-
-$SurName = $_POST['surname'];
-$firstName = $_POST['firstName'];
-$gender = $_POST['gender'];
-$DateOfBirth = $_POST['dateOfBirth'];
-
-if(!_POST['submit']){
-    echo "All fields are required";
-}
-
-else{
-    $sql = "INSERT into Patient (name, first_name, gender, birthdate)
-    values('$SurName', '$firstName', '$gender', '$DateOfBirth') ";
-
-    if(mysql_query($conn, $sql)){
-    echo "Data creation successful";
-
-    }
-
-    else{
-        echo"Something went wrong!";
-    }
-    }
-*/
-?>
 
 
     </table>
@@ -127,7 +98,7 @@ else{
     
         <!-- form to add a new patient-->
         
-        <form id="newPatientForm" action="" method='POST'>
+        <form action="patientList.php" method="POST">
           <input type="hidden" name="newPatient" value="">
           <table id= "newPatientData" class="newPatientData">
             <tr class="data">
@@ -156,12 +127,57 @@ else{
               </td>
             </tr>
           </table>
-          <input type="submit" value="Submit" style= "margin-top: 5px; margin-bottom: 5px;"> <button type="button" class="close" id="cancel" style= "margin-top: 5px; margin-bottom: 5px;">Cancel</button>
+          <input type="submit" name= "submit" value="Submit" style= "margin-top: 5px; margin-bottom: 5px;"> <button type="button" class="close" id="cancel" style= "margin-top: 5px; margin-bottom: 5px;">Cancel</button>
         </form>
       </div>
 
     </div>
   </div>
+
+  <?php
+
+/*include('pdo.inc.php');
+
+$conn = new mysqli ($hostname, $username, $password, $dbname);
+error_reporting(0);
+
+if($conn->connect_error){
+  echo "Connection failed!";
+}
+
+else{
+  echo "Connection successful!";
+}
+
+$surName = $_POST['surname'];
+$firstName = $_POST['firstName'];
+$gender = $_POST['gender'];
+$dateOfBirth = $_POST['dateOfBirth'];
+
+/*if(!$_POST['submit']){
+    echo "All fields are required";
+}*/
+#funktioniert bis hierhin!
+
+#else{
+  /*if($_POST['submit']){
+   $sql = "INSERT INTO patient (name, first_name, gender, birthdate)
+    values('$surName', '$firstName', '$gender', '$dateOfBirth') "; #mögliche fehlerkorrektur bei surName, noch nicht getestet.
+
+    /*if($conn->query($sql) ==TRUE{
+    echo "Data creation successful";
+
+    }
+
+    else{
+        echo "Insertion into database failed!";
+    }
+  }*/
+
+  #$conn->close();
+#}
+
+?>
 
 <!--onclick = "submitData()";-->
 
