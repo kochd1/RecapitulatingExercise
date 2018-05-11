@@ -154,11 +154,11 @@
               $i = 0;  
               while($line2 = $statement2->fetch()) {
                 if($i == 0){
-                  echo "<table id='".strtolower($line2['medicamentID'])."' class='medis'>";
+                  echo "<table id='"."medicine"."' class='medis'>";
                   $i++;
                 } else if ($line2['medicineID'] > $i){
                   echo "</table>";
-                  echo "<table id='".strtolower($line2['medicamentID'])."' class='medis'>";
+                  echo "<table id='"."medicine"."' class='medis'>";
                   $i++;
                 }
                   echo "<tr>";
@@ -198,9 +198,7 @@
       for (var i = 0; i < list.length; i++) {
         list[i].style.display = "none";
       }
-      try {         
-        console.log(document.getElementById(medi));
-        
+      try { 
         document.getElementById(medi).style.display = "table";
       } catch (err) {
         document.getElementById('warning2').style.display = "block";
