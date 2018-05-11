@@ -14,7 +14,7 @@ if(!_POST['submit']){
 }
 
 else{
-    $sql = "INSERT into Patient (name, first_name, gender, birthdate)
+    $sql = "INSERT into patient (name, first_name, gender, birthdate)
     values('$SurName', '$firstName', '$gender', '$DateOfBirth') ";
 
     if(mysql_query($conn, $sql)){

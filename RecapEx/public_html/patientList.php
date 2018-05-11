@@ -37,14 +37,11 @@
         echo "<a> Welcome Dr. Marc ".$_SESSION['user']."</a>";
      ?>
 
-
-     
-
     </div>
 
     <div style= "margin-left: 10px;">
     <h2>Patient list</h2>
-    <h5>Select Patient:</h5>
+    <h5>Select a Patient:</h5>
 
     <table>
       <tr>
@@ -84,9 +81,6 @@
 
 
             ?>
-
-
-
     </table>
 
     <button class="button" id="addPatient" style= "margin-top: 5px; margin-bottom: 5px;">
@@ -247,14 +241,6 @@ $("#submit").on('click', function (e) {
       }
     }
   </script>
-
-<!--footer of this page-->
-
-  <div class="footer">
-    <h6>With a call to Group-I Hospital, you have immediate access to our highly trained staff, 24 hours a day, seven days a week, who can assess an individual in crisis and arrange admission to the appropriate level of care.
-    <br/> This confidential assessment and referral is free of charge. Whatever the need, at any time of the day or night, high quality care is as close as a telephone.
-    <br/>Hospital Group-I, Legend street 22, 9999 Switzerland, Tel.: +41 99 000 00 00</h>
-  </div>
 
 </body>
 </html>
