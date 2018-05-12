@@ -92,7 +92,7 @@
     
         <!-- form to add a new patient-->
         
-        <form action="patientList.php" method="POST">
+        <form method="POST">
           <input type="hidden" name="newPatient" value="">
           <table id= "newPatientData" class="newPatientData">
             <tr class="data">
@@ -130,96 +130,49 @@
 
   <?php
 
-/*include('pdo.inc.php');
+include('pdo.inc.php');
 
 $conn = new mysqli ($hostname, $username, $password, $dbname);
 error_reporting(0);
 
-if($conn->connect_error){
+/*if($conn->connect_error){
   echo "Connection failed!";
 }
 
 else{
   echo "Connection successful!";
-}
+}*/
 
 $surName = $_POST['surname'];
 $firstName = $_POST['firstName'];
 $gender = $_POST['gender'];
 $dateOfBirth = $_POST['dateOfBirth'];
 
-/*if(!$_POST['submit']){
-    echo "All fields are required";
-}*/
-#funktioniert bis hierhin!
-
-#else{
-  /*if($_POST['submit']){
+  if(isset($_POST['submit'])){
    $sql = "INSERT INTO patient (name, first_name, gender, birthdate)
-    values('$surName', '$firstName', '$gender', '$dateOfBirth') "; #mögliche fehlerkorrektur bei surName, noch nicht getestet.
+    values('$surName', '$firstName', '$gender', '$dateOfBirth') ";
 
-    /*if($conn->query($sql) ==TRUE{
-    echo "Data creation successful";
+    echo "<meta http-equiv='refresh' content='0'>";
+  
+    if($conn->query($sql) === TRUE){
+    
+      header("location: patientList.php");
+      exit();
+      
+      $conn->close();
+    
 
     }
 
-    else{
+    /*else{
         echo "Insertion into database failed!";
-    }
-  }*/
+    }*/
 
-  #$conn->close();
-#}
+  }
+
+  $conn->close();
 
 ?>
-
-<!--onclick = "submitData()";-->
-
-  <!--<script>
-  fuction submitData(){
-    document.getElementbyId("newPatientForm").submit();
-  }
-  </script>-->
-
-<!--
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-$("#submit").on('click', function (e) {
-    e.preventDefault();
-    var data = $("#newPatientData tr.data").map(function (index, elem) {
-        var ret = [];
-        $('.inputValue', this).each(function () {
-            var d = $(this).val()||$(this).text();
-            ret.push(d);
-            console.log(d);
-            if (d == "N/A") {
-                console.log(true);
-            }
-        });
-        return ret;
-    });
-    console.log(data);
-    console.log(data[0]);
-});
-
-</script>-->
-  <!-- Use jQuery to read data from table-->
-
-<!--<script>
-  $('id').each(function(row, tr){
-
-    TableData = TableData
-    + $(tr).find('td:eq(0)').text() + ' ' //Patient ID
-    + $(tr).find('td:eq(1)').text() + ' ' //Name
-    + $(tr).find('td:eq(2)').text() + ' ' //First Name
-    + $(tr).find('td:eq(3)').text() + ' ' //Birthdate
-    +'\n';
-
-
-  });
-
-  </script>-->
-
-<!--script to handle modal-->
 
   <script>
     var modal = document.getElementById('modalPatient');
