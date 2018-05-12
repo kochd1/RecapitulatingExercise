@@ -147,6 +147,10 @@ body {
     display: none;
 }
 
+.modalMedicine { 
+    display: none; 
+}
+
 th {
     background: gainsboro;
     font: bold;

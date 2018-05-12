@@ -83,7 +83,7 @@
 
       <h3>Settings</h3>
       <p>Add a Medicine</p>
-      <button class="btn-primary" id="addValue" onclick="displayNewMedicinePopup()'">Add New Medicine</button>
+      <button class="btn-primary" onclick="displayNewMedicinePopup()'">Add New Medicine</button>
   </div>
 
 
@@ -202,7 +202,7 @@
 
 
         <div class="modalMedicine">
-          <form action="patientVitalSigns.php" method="get">
+          <form action="patientVitalSigns.php" method="post">
             <input type="hidden" name="id" value="1">
             <table>
               <tr>
@@ -244,36 +244,36 @@
                 </td>
               </tr>
             </table>
-            <input type="submit" value="Submit">
+            <input type="submit" name= "submit" value="Submit">
           </form>
         </div>
 
         <?php
           include('pdo.inc.php');
 
-          $conn = new mysqli ($hostname, $username, $password, $dbname);
-          error_reporting(0);
+          if ($patientID > 0) {
+            if(isset($_GET['id'])) {
+              $patientID = (int)($_GET['id']);
+            }
+            if(isset($_POST['submit'])){
+              $sql3 = "INSERT INTO medicine (patientID, time, quantity, medicineID, note)
+              values(?, ?, ?, ?)";
+              $stmt = $conn->prepare($sql3);
+              $stmt-> bind_param(':patientID', $patientID, $dateTime, $quantity, $medID, $note, PDO::PARAM_INT);
 
-          $medID = $_POST['medicamentID'];
+          $medID = $_POST['medicineID'];
           $quantity = $_POST['quantity'];
           $note = $_POST['note'];
           $dateTime = $_POST['timeAndDate'];
+          
+          $stmt-> execute();
 
-            if(isset($_POST['submit'])){
-            $sql = "INSERT INTO medicine (time, quantity, medicamentID, note)
-                    values('$dateTime', '$quantity', '$medID', '$note') ";
-
-              echo "<meta http-equiv='refresh' content='0'>";
-            
-              if($conn->query($sql) === TRUE){
-              
-                header("location: patientVitalSigns.php");
-                exit();
-                
-                $conn->close();
-              }
+          echo "<meta http-equiv='refresh' content='0'>";
+           
+          $stmt->close();
+          $conn->close();
             }
-            $conn->close();
+          }
         
           ?>
   </div>
@@ -303,28 +303,45 @@
       } catch (err) {
         document.getElementById('warning2').style.display = "block";
       }
+}
+      // function displayNewMedicinePopup() {
+      //   var popup = document.getElementById("addValue");
+      //   popup.classList.toggle("show");
+      // }
+      //   var modal = document.getElementById('modalMedicine');
+      //   modal.style.display = "none";
 
-      function displayNewMedicinePopup() {
-        // var popup = document.getElementById("addValue");
-        // popup.classList.toggle("show");
+      //   var addBtn = document.getElementById("addValue");
+      //   addBtn.onclick = function () {
+      //     modal.style.display = "block";
+      //   }
 
-          var modal = document.getElementById('modalMedicine');
-            modal.style.display = "none";
-
-            var addBtn = document.getElementById("addValue");
-            addBtn.onclick = function() {
-              modal.style.display = "block";
-            }
-
-            window.onclick = function(event) {
-              if (event.target == modal) {
-                modal.style.display = "none";
-              }
-            }
-      }
-
-    }
+      //   window.onclick = function (event) {
+      //     if (event.target == modal) {
+      //       modal.style.display = "none";
+      //     }
+      //   }
+      // }
   </script>
+
+  <!-- <script>
+	var modal = document.getElementById('modalMedicine');
+	var btn = document.getElementById("addDrug");
+	var span = document.getElementsByClassName("close")[1];
+	btn.onclick = function() {
+		modal.style.display = "block";
+	}
+
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+</script> -->
 </body>
 
 </html>
