@@ -143,35 +143,27 @@ else{
   echo "Connection successful!";
 }*/
 
-$surName = $_POST['surname'];
-$firstName = $_POST['firstName'];
-$gender = $_POST['gender'];
-$dateOfBirth = $_POST['dateOfBirth'];
 
   if(isset($_POST['submit'])){
-   $sql = "INSERT INTO patient (name, first_name, gender, birthdate)
-    values('$surName', '$firstName', '$gender', '$dateOfBirth') ";
 
-    echo "<meta http-equiv='refresh' content='0'>";
-  
-    if($conn->query($sql) === TRUE){
-    
-      header("location: patientList.php");
-      exit();
-      
-      $conn->close();
-    
+  //prepare and bind
+  $sql = "INSERT INTO patient (name, first_name, gender, birthdate) VALUES (?, ?, ?, ?)";
+  $stmt = $conn->prepare($sql);
+  $stmt-> bind_param("ssis", $surName, $firstName, $gender, $dateOfBirth);
 
-    }
+  //set paramettes and execute
+  $surName = $_POST['surname'];
+  $firstName = $_POST['firstName'];
+  $gender = $_POST['gender'];
+  $dateOfBirth = $_POST['dateOfBirth'];
+  $stmt-> execute();
 
-    /*else{
-        echo "Insertion into database failed!";
-    }*/
+  echo "<meta http-equiv='refresh' content='0'>";
 
-  }
-
+  $stmt->close();
   $conn->close();
 
+  }
 ?>
 
   <script>
