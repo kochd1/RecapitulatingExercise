@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+<!-- head of this website-->
 <head>
   <link href="style2.css" type="text/css" rel="stylesheet">
   <title>Patient Vital Signs</title>
@@ -8,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
+<!-- body of this website-->
 <body>
 
   <div class="header">
@@ -83,7 +85,7 @@
 
       <h3>Settings</h3>
       <p>Add a Medicine</p>
-      <button class="btn-primary" onclick="displayNewMedicinePopup();">Add New Medicine</button>
+      <button class="btn-primary" onclick="displayNewMedicinePopup('newMed');">Add New Medicine</button>
   </div>
 
 
@@ -304,7 +306,7 @@
         document.getElementById('warning2').style.display = "block";
       }
     }
-      function displayNewMedicinePopup(med) {
+      function displayNewMedicinePopup(newMe) {
         // var popup = document.getElementById("addValue");
         // popup.classList.toggle("show");
         var list = document.getElementsByClassName("modalMedicine");
@@ -312,7 +314,9 @@
         list[i].style.display = "none";
       }
       try {        
-        document.getElementById().style.display = "table";
+        console.log(document.getElementById(newMe));
+        
+        document.getElementById(newMe).style.display = "table";
       } catch (err) {
         document.getElementById('warning2').style.display = "block";
       }
@@ -334,24 +338,5 @@
       // }
   </script>
 
-  <!-- <script>
-	var modal = document.getElementById('modalMedicine');
-	var btn = document.getElementById("addDrug");
-	var span = document.getElementsByClassName("close")[1];
-	btn.onclick = function() {
-		modal.style.display = "block";
-	}
-
-	span.onclick = function() {
-		modal.style.display = "none";
-	}
-
-	window.onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-	}
-</script> -->
 </body>
-
 </html>

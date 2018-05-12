@@ -2,7 +2,6 @@
 <html>
 
 <!-- head of this website-->
-
 <head>
   <link href="style2.css" type="text/css" rel="stylesheet">
   <title>Hospital Home</title>
@@ -11,7 +10,6 @@
 </head>
 
 <!-- body of this website-->
-
 <body>
 
   <div class="header">
