@@ -83,7 +83,7 @@
 
       <h3>Settings</h3>
       <p>Add a Medicine</p>
-      <button class="btn-primary" onclick="displayNewMedicinePopup()'">Add New Medicine</button>
+      <button class="btn-primary" onclick="displayNewMedicinePopup();">Add New Medicine</button>
   </div>
 
 
@@ -303,11 +303,21 @@
       } catch (err) {
         document.getElementById('warning2').style.display = "block";
       }
-}
-      // function displayNewMedicinePopup() {
-      //   var popup = document.getElementById("addValue");
-      //   popup.classList.toggle("show");
-      // }
+    }
+      function displayNewMedicinePopup(med) {
+        // var popup = document.getElementById("addValue");
+        // popup.classList.toggle("show");
+        var list = document.getElementsByClassName("modalMedicine");
+      for (var i = 0; i < list.length; i++) {
+        list[i].style.display = "none";
+      }
+      try {        
+        document.getElementById().style.display = "table";
+      } catch (err) {
+        document.getElementById('warning2').style.display = "block";
+      }
+      }
+
       //   var modal = document.getElementById('modalMedicine');
       //   modal.style.display = "none";
 
