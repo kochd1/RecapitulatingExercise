@@ -201,60 +201,81 @@
           ?>
 
 
-        <div id= "addValue" class="popup">     
-        <form action="patientVitalSigns.php" method="get">
-          <input type="hidden" name="id" value="1">
-          <table>
-            <tr>
-              <td>Medicament</td>
-              <td>
-                <select name="medicamentID">
-                  <option value="4">Adrenalin</option>
-                  <option value="2">Aspirin 1000 mg</option>
-                  <option value="1">Aspirin 500mg</option>
-                  <option value="3">Morphin</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Quantity</td>
-              <td>
-                <input type="text" name="quantity">
-              </td>
-            </tr>
-            <tr>
-              <td>Note</td>
-              <td>
-                <textarea name="note"></textarea>
-              </td>
-            </tr>
-            <tr>
-              <td>Date/time</td>
-              <td>
-                <input type="text" name="time" placeholder="DD.MM.YYYY hh:mm:ss">
-              </td>
-            </tr>
-            <tr>
-              <td>Nurse</td>
-              <td>
-                <select name="nurseID">
-                  <option value="1">Chris Taub</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Physician</td>
-              <td>
-                <select name="physicianID">
-                  <option value="2">Gregory House</option>
-                  <option value="2">James Wilson</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <input type="submit" value="Submit">
-        </form>
-        </div> 
+        <div class="modalMedicine">
+          <form action="patientVitalSigns.php" method="get">
+            <input type="hidden" name="id" value="1">
+            <table>
+              <tr>
+                <td>Medicament</td>
+                <td>
+                  <select name="medicamentID">
+                    <option value="4">Adrenalin</option>
+                    <option value="2">Aspirin 1000 mg</option>
+                    <option value="1">Aspirin 500mg</option>
+                    <option value="3">Morphin</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Quantity</td>
+                <td>
+                  <input type="text" name="quantity">
+                </td>
+              </tr>
+              <tr>
+                <td>Note</td>
+                <td>
+                  <textarea name="note"></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td>Date/time</td>
+                <td>
+                  <input type="text" name="dateTime" placeholder="DD.MM.YYYY hh:mm:ss">
+                </td>
+              </tr>
+              <tr>
+                <td>Physician</td>
+                <td>
+                  <select name="physicianID">
+                    <option value="2">Gregory House</option>
+                    <option value="2">James Wilson</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+
+        <?php
+          include('pdo.inc.php');
+
+          $conn = new mysqli ($hostname, $username, $password, $dbname);
+          error_reporting(0);
+
+          $medID = $_POST['medicamentID'];
+          $quantity = $_POST['quantity'];
+          $note = $_POST['note'];
+          $dateTime = $_POST['timeAndDate'];
+
+            if(isset($_POST['submit'])){
+            $sql = "INSERT INTO medicine (time, quantity, medicamentID, note)
+                    values('$dateTime', '$quantity', '$medID', '$note') ";
+
+              echo "<meta http-equiv='refresh' content='0'>";
+            
+              if($conn->query($sql) === TRUE){
+              
+                header("location: patientVitalSigns.php");
+                exit();
+                
+                $conn->close();
+              }
+            }
+            $conn->close();
+        
+          ?>
   </div>
 
 
@@ -283,10 +304,23 @@
         document.getElementById('warning2').style.display = "block";
       }
 
-
       function displayNewMedicinePopup() {
-        var popup = document.getElementById("addValue");
-        popup.classList.toggle("show");
+        // var popup = document.getElementById("addValue");
+        // popup.classList.toggle("show");
+
+          var modal = document.getElementById('modalMedicine');
+            modal.style.display = "none";
+
+            var addBtn = document.getElementById("addValue");
+            addBtn.onclick = function() {
+              modal.style.display = "block";
+            }
+
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
       }
 
     }
