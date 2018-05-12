@@ -204,7 +204,7 @@
 
 
         <div class="modalMedicine">
-          <form action="patientVitalSigns.php" method="post">
+          <form action="patientVitalSigns.php" method="get">
             <input type="hidden" name="id" value="1">
             <table>
               <tr>
