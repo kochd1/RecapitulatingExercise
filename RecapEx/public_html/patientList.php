@@ -81,8 +81,7 @@
             ?>
     </table>
 
-    <button class="button" id="addPatient" style= "margin-top: 5px; margin-bottom: 5px;">
-      <i class="fas fa-user-plus"></i> Add new patient</button>
+    <p><button class="btn-login" id="addPatient" style= "margin-top: 5px; margin-bottom: 50px;width: 25%;">&#043; Add new patient</button></p>
     <div id="modalPatient" class="modal">
 
       <!-- Modal content -->

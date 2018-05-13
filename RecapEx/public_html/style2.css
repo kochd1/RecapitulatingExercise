@@ -141,18 +141,21 @@ body {
 }
 
 th {
-    background: gainsboro;
+    background: #0b6c8c;
     font: bold;
-    font-size: 30px;
+    font-size: 20px;
+    padding: 15px;
+    color: #fff;
 }
 
 td {
-    font-size: 20px;
+    font-size: 16px;
+    padding: 8px;
 }
 
 tr:nth-child(odd) {
-    background-color: lightGray;
-}
+    background-color: #a0ccdb;
+}#
 
 #warning {
     padding: 20px;
@@ -233,4 +236,5 @@ tr:nth-child(odd) {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 
