@@ -128,16 +128,8 @@ body {
     }
 }
 
-.signs {
+.vitalcontent {
     display: none;
-}
-
-.medis {
-    display: none;
-}
-
-.modalMedicine { 
-    display: none; 
 }
 
 th {
@@ -155,17 +147,9 @@ td {
 
 tr:nth-child(odd) {
     background-color: #a0ccdb;
-}#
-
-#warning {
-    padding: 20px;
-    background-color: pink;
-    border: 1px solid red;
-    border-radius: 5px;
-    color: red;
 }
 
-#warning2 {
+#warning {
     padding: 20px;
     background-color: pink;
     border: 1px solid red;

@@ -111,7 +111,7 @@
               $i = 0;
               while($line = $statement->fetch()) {
                   if($i == 0){
-                    echo "<table id='".strtolower($line['sign_name'])."' class='signs'>";
+                    echo "<table id='".strtolower($line['sign_name'])."' class='vitalcontent'>";
                     echo "<tr>";
                     echo "<th>"."Sign Name"."</th>";
                     echo "<th>"."Value"."</th>";
@@ -121,7 +121,7 @@
                     $i++;
                   } else if ($line['signID'] > $i){
                     echo "</table>";
-                    echo "<table id='".strtolower($line['sign_name'])."' class='signs'>";
+                    echo "<table id='".strtolower($line['sign_name'])."' class='vitalcontent'>";
                     $i++;
                     echo "<tr>";
                     echo "<th>"."Sign Name"."</th>";
@@ -138,7 +138,7 @@
                   echo "</tr>";
                }
               echo '</table>';
-              echo '<div id="warning" class="signs">No List exists</div>';
+              echo '<div id="warning" class="vitalcontent">No List exists</div>';
               }
               else{
                 echo "<h1>The patient does not exist</h1>";
@@ -164,7 +164,7 @@
               $i = 0;  
               while($line2 = $statement2->fetch()) {
                 if($i == 0){
-                  echo "<table id='"."medicine"."' class='medis'>";
+                  echo "<table id='"."medicine"."' class='vitalcontent'>";
                   $i++;
                   echo "<tr>";
                   echo "<th>"."Medicine ID"."</th>";
@@ -175,7 +175,7 @@
                   echo "</tr>";
                 } else if ($line2['medicineID'] > $i){
                   echo "</table>";
-                  echo "<table id='"."medicine"."' class='medis'>";
+                  echo "<table id='"."medicine"."' class='vitalcontent'>";
                   $i++;
                   echo "<tr>";
                   echo "<th>"."Medicine ID"."</th>";
@@ -194,7 +194,7 @@
                   echo "</tr>";
                }
               echo '</table>';
-              echo '<div id="warning2" class="medis">No List exists</div>';
+              echo '<div id="warning" class="vitalcontent">No List exists</div>';
               }
               else{
                 echo "<h1>The patient does not exist</h1>";
@@ -203,7 +203,7 @@
           ?>
 
 
-        <div class="modalMedicine">
+        <div class="vitalcontent" id="newMed">
           <form action="patientVitalSigns.php" method="get">
             <input type="hidden" name="id" value="1">
             <table>
@@ -283,10 +283,7 @@
 
   <script>
     function displayVitalSigns(sign) {
-      var list = document.getElementsByClassName("signs");
-      for (var i = 0; i < list.length; i++) {
-        list[i].style.display = "none";
-      }
+      hideAll();
       try {
         document.getElementById(sign).style.display = "table";
       } catch (err) {
@@ -296,46 +293,32 @@
     }
 
     function displayMedicicine(medi) {
-      var list = document.getElementsByClassName("medis");
-      for (var i = 0; i < list.length; i++) {
-        list[i].style.display = "none";
-      }
+      hideAll();
       try {
         document.getElementById(medi).style.display = "table";
       } catch (err) {
-        document.getElementById('warning2').style.display = "block";
+        document.getElementById('warning').style.display = "block";
       }
     }
-      function displayNewMedicinePopup(newMe) {
-        // var popup = document.getElementById("addValue");
-        // popup.classList.toggle("show");
-        var list = document.getElementsByClassName("modalMedicine");
-      for (var i = 0; i < list.length; i++) {
-        list[i].style.display = "none";
+
+    function hideAll() {
+      var elements = document.getElementsByClassName("vitalcontent");
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].style.display = "none";
       }
+    }
+
+      function displayNewMedicinePopup(newMe) {
+        hideAll();
       try {        
         console.log(document.getElementById(newMe));
         
         document.getElementById(newMe).style.display = "table";
       } catch (err) {
-        document.getElementById('warning2').style.display = "block";
+        document.getElementById('warning').style.display = "block";
       }
       }
 
-      //   var modal = document.getElementById('modalMedicine');
-      //   modal.style.display = "none";
-
-      //   var addBtn = document.getElementById("addValue");
-      //   addBtn.onclick = function () {
-      //     modal.style.display = "block";
-      //   }
-
-      //   window.onclick = function (event) {
-      //     if (event.target == modal) {
-      //       modal.style.display = "none";
-      //     }
-      //   }
-      // }
   </script>
 
 </body>
