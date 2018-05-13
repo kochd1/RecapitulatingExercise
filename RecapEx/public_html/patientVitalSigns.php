@@ -2,6 +2,7 @@
 <html>
 
 <!-- head of this website-->
+
 <head>
   <link href="style2.css" type="text/css" rel="stylesheet">
   <title>Patient Vital Signs</title>
@@ -10,6 +11,7 @@
 </head>
 
 <!-- body of this website-->
+
 <body>
 
   <div class="header">
@@ -210,12 +212,18 @@
               <tr>
                 <td>Medicament</td>
                 <td>
-                  <select name="medicamentID">
-                    <option value="4">Adrenalin</option>
-                    <option value="2">Aspirin 1000 mg</option>
-                    <option value="1">Aspirin 500mg</option>
-                    <option value="3">Morphin</option>
-                  </select>
+                <select name="medicamentID">
+                <?php
+                    $sql = "SELECT medicamentID, medicament_name FROM medicament ORDER BY medicament_name ASC";
+    
+                    $statement = $dbh->prepare($sql);
+                    $statement->execute();
+                            
+                    while($medicament = $statement->fetch()) {
+                        echo "<option value=\"".$medicament['medicamentID']."\">".$medicament['medicament_name']."</option>";
+                    }
+                ?>
+            </select>
                 </td>
               </tr>
               <tr>
@@ -237,6 +245,28 @@
                 </td>
               </tr>
               <tr>
+                <td>Nurse</td>
+                <td>
+                <select name="nurseID">
+                <?php
+                    $sql = "SELECT fonctionID, first_name, name FROM staff
+                            INNER JOIN function ON staff.fonctionID = function.functionID
+                            WHERE function_name = :functionName
+                            ORDER BY first_name, name ASC";
+    
+                    $statement = $dbh->prepare($sql);
+                    $function = 'Nurse';
+                    $statement->bindParam(':functionName', $function, PDO::PARAM_STR);
+                    $statement->execute();
+                            
+                    while($nurse = $statement->fetch()) {
+                        echo "<option value=\"".$nurse['fonctionID']."\">".$nurse['first_name']." ".$nurse['name']."</option>";
+                    }
+                ?>
+            </select>
+                </td>
+              </tr>
+              <tr>
                 <td>Physician</td>
                 <td>
                   <select name="physicianID">
@@ -246,7 +276,7 @@
                 </td>
               </tr>
             </table>
-            <input type="submit" name= "submit" value="Submit">
+            <input class="btn-add" type="submit" name="submit" value="Submit">
           </form>
         </div>
 
@@ -257,23 +287,28 @@
             if(isset($_GET['id'])) {
               $patientID = (int)($_GET['id']);
             }
-            if(isset($_POST['submit'])){
-              $sql3 = "INSERT INTO medicine (patientID, time, quantity, medicineID, note)
-              values(?, ?, ?, ?)";
-              $stmt = $conn->prepare($sql3);
-              $stmt-> bind_param(':patientID', $patientID, $dateTime, $quantity, $medID, $note, PDO::PARAM_INT);
-
-          $medID = $_POST['medicineID'];
-          $quantity = $_POST['quantity'];
-          $note = $_POST['note'];
-          $dateTime = $_POST['timeAndDate'];
+            if(isset($_GET['submit'])){
+              if (isset($_GET['medicamentID'])) {
+                $dateDE = substr($_GET['time'], 0, 10);
+                $time = substr($_GET['time'], 10);
+                $dateParts = explode('.', $dateDE);
+                $dateSQL = $dateParts[2]."-".$dateParts[1]."-".$dateParts[0].$time;
           
-          $stmt-> execute();
-
-          echo "<meta http-equiv='refresh' content='0'>";
-           
-          $stmt->close();
-          $conn->close();
+                  $sql = "INSERT INTO medicine (medicamentID, note, patientID, quantity, staffID_nurse, staffID_physician, time)
+                        VALUES(:medicamentID, :note, :patientID, :quantity, :nurseID, :physicianID, :time)";
+                  $statement = $dbh->prepare($sql);
+                  $statement->bindParam(':medicamentID', $_GET['medicamentID'], PDO::PARAM_INT);
+                  $statement->bindParam(':note', $_GET['note'], PDO::PARAM_STR);
+                  $statement->bindParam(':patientID', $patientID, PDO::PARAM_INT);
+                  $statement->bindParam(':quantity', $_GET['quantity'], PDO::PARAM_INT);
+                  $statement->bindParam(':nurseID', $_GET['nurseID'], PDO::PARAM_INT);
+                  $statement->bindParam(':physicianID', $_GET['physicianID'], PDO::PARAM_INT);
+                  $statement->bindParam(':time', $dateSQL, PDO::PARAM_STR);
+                  $statement->execute();
+            
+              } else  {
+                  echo "Could not save.";
+                }
             }
           }
         
@@ -308,16 +343,16 @@
       }
     }
 
-      function displayNewMedicinePopup(newMe) {
-        hideAll();
-      try {             
+    function displayNewMedicinePopup(newMe) {
+      hideAll();
+      try {
         document.getElementById(newMe).style.display = "table";
       } catch (err) {
         document.getElementById('warning').style.display = "block";
       }
-      }
-
+    }
   </script>
 
 </body>
+
 </html>

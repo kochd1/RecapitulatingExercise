@@ -4,9 +4,24 @@
 <!-- head of this website-->
 <head>
   <link href="style2.css" type="text/css" rel="stylesheet">
+  <link href="jquery-ui.css" type="text/css" rel="stylesheet">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+    <script src="jquery-ui.js"></script>
   <title>Hospital Home</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style type="text/css">
+
+    #dialog{
+
+        display: none;
+
+    }
+
+    </style>
 </head>
 
 <!-- body of this website-->
@@ -23,7 +38,7 @@
   </div>
 
   <div class="slide">
-    <div class="alert alert-info">
+    <div class="alert alert-info" style="margin:20px;">
       <?php
         session_start();
         // First, we test if user is logged. If not, goto index.php (login page).
@@ -37,7 +52,7 @@
 
     </div>
 
-    <div style= "margin-left: 10px;">
+    <div style= "margin-left: 20px;">
     <h2>Patient list</h2>
     <h5>Select a Patient:</h5>
 
@@ -81,15 +96,12 @@
             ?>
     </table>
 
-    <p><button class="btn-login" id="addPatient" style= "margin-top: 5px; margin-bottom: 50px;width: 25%;">&#043; Add new patient</button></p>
-    <div id="modalPatient" class="modal">
+    <button class="btn-add" id="addPatient" style= "margin-top: 5px; margin-bottom: 50px;">&#043; Add new patient</button>
 
-      <!-- Modal content -->
-     <div class="modal-content">
-    
-        <!-- form to add a new patient-->
-        
-        <form method="POST">
+
+<div id="dialog" style="height: 300px important;">
+
+  <form method="POST">
           <input type="hidden" name="newPatient" value="">
           <table id= "newPatientData" class="newPatientData">
             <tr class="data">
@@ -118,11 +130,22 @@
               </td>
             </tr>
           </table>
-          <input type="submit" name= "submit" value="Submit" style= "margin-top: 5px; margin-bottom: 5px;"> <button type="button" class="close" id="cancel" style= "margin-top: 5px; margin-bottom: 5px;">Cancel</button>
+          <input type="submit" name= "submit" value="Submit" class="btn-add" style= "margin-top: 5px; margin-bottom: 5px;"> <button type="button" class="close btn-add" id="cancel" style= "margin-top: 5px; margin-bottom: 5px;">Cancel</button>
         </form>
-      </div>
 
-    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $("button").click(function(){
+
+        $( "#dialog" ).dialog();
+
+    });
+
+</script>      
+     
   </div>
 
   <?php
