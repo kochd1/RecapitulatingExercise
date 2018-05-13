@@ -310,9 +310,7 @@
 
       function displayNewMedicinePopup(newMe) {
         hideAll();
-      try {        
-        console.log(document.getElementById(newMe));
-        
+      try {             
         document.getElementById(newMe).style.display = "table";
       } catch (err) {
         document.getElementById('warning').style.display = "block";
